@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Learning Journal</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width" />
+  <link href='https://fonts.googleapis.com/css?family=Bangers|Roboto' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <div class="wrapper">
+    <header class="navbar clearfix">
+      <div class="navbar-header clearfix">
+        <a href="/" class="logo">Learning Journal</a>
+        <button id="navbar-toggle" class="navbar-toggle">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <nav class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="https://github.com/jonathanstallings/learning-journal" target="_blank">Source</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main class="clearfix">
+      <section id="new-entry">
+        <h2>Add Entry</h2>
+        <ul>
+          <li><a href="create.html">New Entry</a></li>
+        </ul>
+      </section>
+      <section id="entry-list">
+        <h2>Journal Entries</h2>
+        <ul>
+          <li><a href="detail.html" class="entry-link">Entry</a><span class="date">Date</span></li>
+          <li><a href="detail.html" class="entry-link">Entry</a><span class="date">Date</span></li>
+          <li><a href="detail.html" class="entry-link">Entry</a><span class="date">Date</span></li>
+        </ul>
+      </section>
+    </main>
+    <footer>
+      <p>Created by Jonathan Stallings.<br />Available under the <a href="https://raw.githubusercontent.com/jonathanstallings/learning-journal/master/LICENSE" target="_blank">MIT license.</a></p>
+    </footer>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="journal.js"></script>
+</body>
+</html>
