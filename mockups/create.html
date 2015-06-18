@@ -24,7 +24,29 @@
       </nav>
     </header>
     <main>
-
+      <section id="entry-create">
+        <div class="container">
+          <h3>New Entry</h3>
+          <form action="" method="post">
+          <ul>
+            <li>
+              <label for="title">Title</label>
+              <input type="text" name="title" id="title" value="" size="30" maxlength="60" required autofocus/>
+            </li>
+            <li>
+              <label for="text">Text</label>
+              <textarea name="text" id="text" cols="60" rows="8" required></textarea>
+            </li>
+            <li>
+              <div id="form-buttons">
+                <input type="submit" id="save-button"  class="button" value="Save" />
+                <a class="button" href="index.html">Cancel</a>
+              </div>
+            </li>
+          </ul>
+          </form>
+        </div>
+      </section>
     </main>
     <footer>
       <p>Created by Jonathan Stallings.<br />Available under the <a href="https://raw.githubusercontent.com/jonathanstallings/learning-journal/master/LICENSE" target="_blank">MIT license.</a></p>
