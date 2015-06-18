@@ -49,10 +49,13 @@ footer {
     margin-left: 2rem; }
 
 article {
-  margin: 5rem auto;
+  margin: 0 auto;
   padding: 5rem;
   background-color: #1e1e1e;
   border-radius: 1rem; }
+  @media (min-width: 400px) {
+    article {
+      margin: 5rem auto; } }
 
 /* Typography
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -136,7 +139,7 @@ select {
   border: 1px solid #e2e2e2;
   background: #787878;
   border-radius: 6px;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   padding: 0 1rem;
   color: black;
   width: 70%; }
@@ -150,7 +153,8 @@ select {
     input[type="password"],
     textarea,
     select {
-      width: 80%; } }
+      width: 80%;
+      font-size: 1.8rem; } }
 
 label,
 legend {
