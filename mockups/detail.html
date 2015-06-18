@@ -1,38 +1,57 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Learning Journal</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width" />
-  <link href='https://fonts.googleapis.com/css?family=Bangers|Roboto' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-  <div class="wrapper">
-    <header class="navbar clearfix">
-      <div class="navbar-header clearfix">
-        <a href="/" class="logo">Learning Journal</a>
-        <button id="navbar-toggle" class="navbar-toggle">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      </div>
-      <nav class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-          <li><a href="{% url 'about' %}">About</a></li>
+  <head>
+    <title>Learning Journal</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" />
+    <link href='https://fonts.googleapis.com/css?family=Bangers|Roboto' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <header class="full-width clearfix">
+      <a href="index.html" class="logo">Learning Journal</a>
+      <button id="navbar-toggle">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <nav id="navbar-collapse" class="collapse">
+        <ul>
+          <li><a href="about.html">About</a></li>
           <li><a href="https://github.com/jonathanstallings/learning-journal" target="_blank">Source</a></li>
         </ul>
       </nav>
     </header>
-    <main class="clearfix">
-
+    <main>
+      <section id="entry-detail">
+        <div class="container">
+          <h3>Entry Detail</h3>
+          <form action="" method="post">
+          <ul>
+            <li>
+              <label for="title">Title</label>
+              <input type="text" name="title" id="title" value="Sample Title" size="30" maxlength="60" required {% if user.protected %} disabled="disabled" {% endif %} />
+            </li>
+            <li>
+              <label for="text">Text</label>
+              <textarea name="text" id="text" cols="60" rows="8">Sample Entry</textarea>
+            </li>
+            <li>
+              <div id="form-buttons">
+                <input type="submit" id="save-button"  class="button" value="Save" />
+                  <a class="button" href="index">Cancel</a>
+              </div>
+            </li>
+          </ul>
+          </form>
+        </div>
+      </section>
     </main>
     <footer>
       <p>Created by Jonathan Stallings.<br />Available under the <a href="https://raw.githubusercontent.com/jonathanstallings/learning-journal/master/LICENSE" target="_blank">MIT license.</a></p>
     </footer>
-  </div>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="journal.js"></script>
-</body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="journal.js"></script>
+  </body>
 </html>

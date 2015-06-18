@@ -1,6 +1,9 @@
 @charset "UTF-8";
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+* {
+  box-sizing: border-box; }
+
 .container {
   position: relative;
   width: 100%;
@@ -239,8 +242,6 @@ main li {
   padding: 5px 0;
   border-bottom: 1px solid #787878;
   background-color: #282828; }
-  main li:hover {
-    background-color: #424242; }
   main li a {
     line-height: 4rem;
     font-size: 1.8rem;
@@ -255,5 +256,17 @@ main li {
     main li .date:hover {
       color: #CF2323;
       text-shadow: 1px 1px 1px #000, 5px 5px 8px #1e1e1e; }
+main #new-entry li:hover,
+main #entry-list li:hover {
+  background-color: #424242; }
+
+/* Index
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+#entry-detail label {
+  display: inline-block;
+  line-height: 4rem;
+  text-align: right;
+  padding-right: 2rem;
+  width: 12rem; }
 
 /*# sourceMappingURL=style.css.map */
