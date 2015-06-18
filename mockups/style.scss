@@ -8,7 +8,7 @@ $highlight-color: white;
 
 $heading-font: 'Bangers', cursive;
 $text-font: 'Roboto', sans-serif;
-$text-color: rgb(60, 60, 60);
+$text-color: rgb(157, 157, 157);
 
 @mixin text-shadow {
   text-shadow:
@@ -46,8 +46,10 @@ body {
   background-color: $primary-color;
   font-family: $text-font;
   font-size: 1.5em;
-  color: $lightest-color;
+  line-height: 2rem;
+  color: $text-color;
   margin: 0;
+  min-width: 350px;
 }
 
 header {
@@ -67,6 +69,9 @@ main {
 footer {
   background-color: $darkest-color;
   padding: 15px;
+  p {
+    margin-left: 2rem;
+  }
 }
 
 /* Typography
@@ -96,7 +101,7 @@ h3 {
 }
 
 p {
-  line-height: 1.2rem;
+  // line-height: 1.2rem;
 }
 
 /* Links
