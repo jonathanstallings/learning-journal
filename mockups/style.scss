@@ -5,10 +5,11 @@ $primary-color: rgb(50, 50, 50);
 $lighter-color: rgb(120, 120, 120);
 $lightest-color: rgb(200, 200, 200);
 $highlight-color: white;
+$text-color: rgb(157, 157, 157);
+$link-color: lightslategray;
 
 $heading-font: 'Bangers', cursive;
 $text-font: 'Roboto', sans-serif;
-$text-color: rgb(157, 157, 157);
 
 @mixin text-shadow {
   text-shadow:
@@ -18,7 +19,7 @@ $text-color: rgb(157, 157, 157);
 
 //Global Styles
 
-/* Grid
+/* Grid (Not Implemented)
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 * {
   box-sizing: border-box;
@@ -29,11 +30,9 @@ $text-color: rgb(157, 157, 157);
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  // padding: 0 20px;
   box-sizing: border-box;
   @media (min-width: 400px) {
     width: 85%;
-    // padding: 0;
   }
   @media (min-width: 550px) {
     width: 80%;
@@ -54,38 +53,6 @@ body {
   color: $text-color;
   margin: 0;
   min-width: 350px;
-}
-
-header {
-  height: 5rem;
-  background-color: $darkest-color;
-}
-
-main, section {
-  display: block;
-}
-
-main {
-  padding: 5rem 0;
-  min-height: 800px;
-}
-
-footer {
-  background-color: $darkest-color;
-  padding: 1.5rem;
-  p {
-    margin-left: 2rem;
-  }
-}
-
-article {
-  margin: 0 auto;
-  padding: 5rem;
-  background-color: $darkest-color;
-  border-radius: 1rem;
-  @media (min-width: 400px) {
-    margin: 5rem auto;
-  }
 }
 
 /* Typography
@@ -119,7 +86,7 @@ h3 {
 }
 
 p {
-  // line-height: 1.2rem;
+  line-height: 2.2rem;
 }
 
 hr {
@@ -133,7 +100,7 @@ hr {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 a {
   text-decoration: none;
-  color: lightslategray;
+  color: $link-color;
   &:hover {
       color: $highlight-color;
       @include text-shadow;
@@ -296,7 +263,45 @@ form {
   display: table;
   clear: both; }
 
-//Page Specifics
+//Shared Page Elements
+
+/* Header
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+header {
+  height: 5rem;
+  background-color: $darkest-color;
+}
+
+/* Main
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+main, section {
+  display: block;
+}
+
+main {
+  padding: 5rem 0;
+  min-height: 800px;
+}
+
+article {
+  margin: 0 auto;
+  padding: 5rem;
+  background-color: $darkest-color;
+  border-radius: 1rem;
+  @media (min-width: 400px) {
+    margin: 5rem auto;
+  }
+}
+
+/* Footer
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+footer {
+  background-color: $darkest-color;
+  padding: 1.5rem;
+  p {
+    margin-left: 2rem;
+  }
+}
 
 /* Navigation
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -388,12 +393,12 @@ nav {
   }
 }
 
-/* Template
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
 .current-page {
   color: $highlight-color;
   font-weight: bold;
 }
+
+//Page Specific Elements
 
 /* Index
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -452,8 +457,9 @@ nav {
     cursor: pointer;
     padding: 8px 10px;
     font-size: 1.8rem;
-    color: lightslategray;
-    &:hover {
+    color: $link-color;
+    &:hover,
+    &:focus {
       color: white;
     }
   }
