@@ -9,12 +9,10 @@
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  padding: 0 20px;
   box-sizing: border-box; }
   @media (min-width: 400px) {
     .container {
-      width: 85%;
-      padding: 0; } }
+      width: 85%; } }
   @media (min-width: 550px) {
     .container {
       width: 80%; } }
@@ -34,7 +32,7 @@ body {
   min-width: 350px; }
 
 header {
-  height: 50px;
+  height: 5rem;
   background-color: #1e1e1e; }
 
 main, section {
@@ -46,9 +44,15 @@ main {
 
 footer {
   background-color: #1e1e1e;
-  padding: 15px; }
+  padding: 1.5rem; }
   footer p {
     margin-left: 2rem; }
+
+article {
+  margin: 5rem auto;
+  padding: 5rem;
+  background-color: #1e1e1e;
+  border-radius: 1rem; }
 
 /* Typography
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -60,6 +64,7 @@ h1, h2, h3, h4, h5, h6 {
   text-shadow: 1px 1px 1px #000, 5px 5px 8px #1e1e1e; }
 
 h1 {
+  font-family: "Bangers", cursive;
   font-size: 4rem;
   line-height: 1.2; }
 
@@ -71,9 +76,18 @@ h3 {
   font-size: 1.5rem;
   line-height: 1.3;
   margin: 0;
-  padding: 3rem 0 1rem;
+  padding: 3rem 1.5rem 1rem;
   text-transform: uppercase;
   border-bottom: 2px solid #c8c8c8; }
+  @media (min-width: 400px) {
+    h3 {
+      padding: 3rem 0 1rem; } }
+
+hr {
+  margin-top: 3rem;
+  margin-bottom: 3.5rem;
+  border-width: 0;
+  border-top: 1px solid #c8c8c8; }
 
 /* Links
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -104,7 +118,8 @@ input[type="button"] {
   input[type="reset"]:focus,
   input[type="button"]:hover,
   input[type="button"]:focus {
-    color: white; }
+    color: white;
+    text-shadow: 1px 1px 1px #000, 5px 5px 8px #1e1e1e; }
 
 /* Forms
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -117,7 +132,29 @@ input[type="url"],
 input[type="password"],
 textarea,
 select {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  border: 1px solid #e2e2e2;
+  background: #787878;
+  border-radius: 6px;
+  font-size: 1.8rem;
+  padding: 0 1rem;
+  color: black;
+  width: 70%; }
+  @media (min-width: 400px) {
+    input[type="email"],
+    input[type="number"],
+    input[type="search"],
+    input[type="text"],
+    input[type="tel"],
+    input[type="url"],
+    input[type="password"],
+    textarea,
+    select {
+      width: 80%; } }
+
+label,
+legend {
+  color: #c8c8c8; }
 
 /* Lists
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -127,6 +164,15 @@ ul, ol {
 
 li {
   list-style: none; }
+  main li {
+    overflow: hidden;
+    padding: 5px 0;
+    border-bottom: 1px solid #787878;
+    background-color: #282828; }
+    main li a {
+      line-height: 4rem;
+      font-size: 1.8rem;
+      padding: 0 0 0 1rem; }
 
 /* Code
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -235,38 +281,74 @@ nav {
     overflow: visible !important;
     visibility: visible !important; } }
 
-/* Index
+/* Template
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-main li {
-  overflow: hidden;
-  padding: 5px 0;
-  border-bottom: 1px solid #787878;
-  background-color: #282828; }
-  main li a {
-    line-height: 4rem;
-    font-size: 1.8rem;
-    padding: 0 0 0 1rem; }
-  main li .date {
-    float: right;
-    position: relative;
-    right: 1rem;
-    padding: 10px 6px;
-    font-size: 1.5rem;
-    cursor: pointer; }
-    main li .date:hover {
-      color: #CF2323;
-      text-shadow: 1px 1px 1px #000, 5px 5px 8px #1e1e1e; }
-main #new-entry li:hover,
-main #entry-list li:hover {
-  background-color: #424242; }
+.current-page {
+  color: white;
+  font-weight: bold; }
 
 /* Index
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-#entry-detail label {
+#new-entry li:hover,
+#entry-list li:hover {
+  background-color: #424242; }
+#new-entry li .date,
+#entry-list li .date {
+  float: right;
+  position: relative;
+  right: 1rem;
+  padding: 10px 6px;
+  font-size: 1.5rem;
+  cursor: pointer; }
+  #new-entry li .date:hover,
+  #entry-list li .date:hover {
+    color: white;
+    text-shadow: 1px 1px 1px #000, 5px 5px 8px #1e1e1e; }
+
+/* Create/Edit
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+#entry-create li *,
+#entry-edit li * {
+  float: left; }
+#entry-create label,
+#entry-edit label {
   display: inline-block;
   line-height: 4rem;
   text-align: right;
   padding-right: 2rem;
-  width: 12rem; }
+  width: 6rem; }
+#entry-create input[type="text"],
+#entry-edit input[type="text"] {
+  margin: 0;
+  line-height: 4rem; }
+
+#form-buttons {
+  margin: 0 0 0 6rem; }
+  #form-buttons .button {
+    float: none;
+    background: none;
+    border: 0;
+    width: 8rem;
+    cursor: pointer;
+    padding: 8px 10px;
+    font-size: 1.8rem;
+    color: lightslategray; }
+    #form-buttons .button:hover {
+      color: white; }
+
+/* Detail
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+#entry-detail h1 {
+  margin-bottom: 0; }
+#entry-detail .date {
+  margin-top: 0;
+  padding-top: 0;
+  font-weight: 200;
+  font-style: italic; }
+
+/* About
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+#about-text h1 {
+  text-align: center; }
 
 /*# sourceMappingURL=style.css.map */
