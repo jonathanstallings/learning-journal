@@ -224,7 +224,7 @@ nav {
   visibility: none; }
 
 @media (min-width: 400px) {
-  .navbar-collapse.collapse {
+  #navbar-collapse.collapse {
     display: block !important;
     height: auto !important;
     padding-bottom: 0;
