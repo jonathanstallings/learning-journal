@@ -364,7 +364,7 @@ main li {
     cursor: pointer;
     &:hover {
       color: #CF2323;
-      text-shadow: 1px 1px 1px black, 5px 5px 8px $darkest-color;
+      @include text-shadow;
     }
   }
 }
