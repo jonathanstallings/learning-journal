@@ -1,0 +1,193 @@
+//Definitions
+$primary-color: rgb(50, 50, 50);
+$lighter-color: rgb(120, 120, 120);
+$lightest-color: rgb(200, 200, 200);
+$darker-color: rgb(40, 40, 40);
+$darkest-color: rgb(30, 30, 30);
+$highlight-color: white;
+
+$heading-font: 'Bangers', cursive;
+$text-font: 'Roboto', sans-serif;
+
+//Global Styles
+
+/* Grid
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.container {
+    
+}
+
+/* Base Styles
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+html {
+    
+}
+
+body {
+  background-color: $primary-color;
+  font-family: $text-font;
+  color: $lightest-color;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  min-width: 350px;
+}
+
+/* Typography
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+h1, h2, h3, h4, h5, h6 {
+
+}
+
+p {
+    
+}
+
+/* Links
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+a {
+  text-decoration: none;
+  color: lightslategray;
+  &:hover {
+      color: $highlight-color;
+      text-shadow:
+        1px 1px 1px #000
+        5px 5px 8px $darkest-color
+  }
+}
+
+
+/* Buttons
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.button,
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  display: inline-block;
+  box-sizing: border-box;
+  background: none;
+  cursor: pointer;
+  &:hover, &:focus {
+    color: $highlight-color
+  }
+}
+
+/* Forms
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea,
+select {
+  box-sizing: border-box;
+  &:focus {
+    
+  }
+}
+
+label,
+legend {
+  
+}
+
+fieldset {
+  
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  
+}
+
+/* Lists
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+ul {
+  
+}
+
+ol {
+  
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+/* Code
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+code {
+  
+}
+
+pre > code {
+  
+}
+
+/* Tables
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+th,
+td {
+  
+}
+
+/* Spacing
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+button,
+.button {
+  
+}
+
+input,
+textarea,
+select,
+fieldset {
+  
+}
+
+pre,
+blockquote,
+dl,
+figure,
+table,
+p,
+ul
+ol,
+form {
+  
+}
+
+/* Utilities
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.full-width {
+  width: 100%;
+  box-sizing: border-box; }
+.max-full-width {
+  max-width: 100%;
+  box-sizing: border-box; }
+.pull-right {
+  float: right; }
+.pull-left {
+  float: left; }
+
+
+/* Clearing
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.container:after,
+.row:after,
+.cf {
+  content: "";
+  display: table;
+  clear: both; }
+
+//Page Specifics
