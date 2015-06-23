@@ -1,14 +1,30 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+import datetime
 import os
+
 from pyramid.config import Configurator
 from pyramid.view import view_config
-import sqlalchemy as sa
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, DateTime, Integer, Unicode, UnicodeText
 from waitress import serve
 
 
 Base = declarative_base
+
+
+class Entry(Base):
+    __tablename__ = "entries"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    title = Column(Unicode(127), nullable=False)
+    text = Column(UnicodeText, nullable=False)
+    created = Column(DateTime, nullable=False)
+
+    def __repr__(self):
+        return "Entry: {title} created at {date}".format(
+            title=self.title, date=self.date
+        )
 
 
 @view_config(route_name='home', renderer='string')
