@@ -8,6 +8,9 @@ from sqlaclchemy.ext.declarative import declarative_base
 from waitress import serve
 
 
+Base = declarative_base
+
+
 @view_config(route_name='home', renderer='string')
 def home(request):
     return "Hello World"
