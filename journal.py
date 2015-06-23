@@ -3,8 +3,8 @@ from __future__ import unicode_literals
 import os
 from pyramid.config import Configurator
 from pyramid.view import view_config
-import sqlaclchemy as sa
-from sqlaclchemy.ext.declarative import declarative_base
+import sqlalchemy as sa
+from sqlalchemy.ext.declarative import declarative_base
 from waitress import serve
 
 
