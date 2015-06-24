@@ -31,7 +31,7 @@ class Entry(Base):
 
     def __repr__(self):
         return "Entry: {title} created at {date}".format(
-            title=self.title, date=self.date
+            title=self.title, date=self.created
         )
 
 
