@@ -40,9 +40,9 @@ def init_db():
     Base.metadata.create_all(engine)
 
 
-@view_config(route_name='home', renderer='string')
+@view_config(route_name='home', renderer='templates/test.jinja2')
 def home(request):
-    return "Hello World"
+    return {'one': 'two', 'stuff': ['a', 'b', 'c']}
 
 
 def main():
