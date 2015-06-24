@@ -12,7 +12,7 @@ from waitress import serve
 
 DATABASE_URL = os.environ.get(
     'DATABASE_URL',
-    'postgres://jonathan:mypostgrespw@localhost/learning-journal'
+    'postgres://jonathan@localhost:5432/learning-journal'
 )
 
 
