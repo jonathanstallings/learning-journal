@@ -55,6 +55,8 @@ def main():
     config = Configurator(
         settings=settings
     )
+    # config.include('pyramid_tm')
+    config.include('pyramid_jinja2')
     config.add_route('home', '/')
     config.scan()
     app = config.make_wsgi_app()
