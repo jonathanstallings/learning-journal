@@ -54,11 +54,15 @@ def main():
     debug = os.environ.get('DEBUG', True)
     settings['reload_all'] = debug
     settings['debug_all'] = debug
+    if not os.environ.get('TESTING', False):
+        # only bind the session if we are not testing
+        engine = sa.create_engine(DATABASE_URL)
+        DBSession.configure(bind=engine)
     # configuration setup
     config = Configurator(
         settings=settings
     )
-    # config.include('pyramid_tm')
+    config.include('pyramid_tm')
     config.include('pyramid_jinja2')
     config.add_route('home', '/')
     config.scan()
