@@ -7,7 +7,7 @@ from sqlalchemy.exc import IntegrityError
 
 TEST_DATABASE_URL = os.environ.get(
     'DATABASE_URL',
-    'postgresql://cewing:@localhost:5432/test-learning-journal'
+    'postgresql://jonathan:@localhost:5432/test-learning-journal'
 )
 os.environ['DATABASE_URL'] = TEST_DATABASE_URL
 os.environ['TESTING'] = "True"
