@@ -25,3 +25,14 @@ def connection(request):
     journal.Base.metadata.bind = engine
     request.addfinalizer(journal.Base.metadata.drop_all)
     return connection
+
+
+@pytest.fixture()
+def db_session(request, connection):
+    from transaction import abort
+    trans = connection.begin()
+    request.addfinalizer(trans.rollback)
+    request.addfinalizer(abort)
+
+    from journal import DBSession
+    return DBSession
