@@ -39,7 +39,10 @@ class Entry(Base):
 
     @classmethod
     def write(cls, title=None, text=None, session=None):
+        if session is None:
+            session = DBSession
         instance = cls(title=title, text=text)
+        session.add(instance)
         return instance
 
 
