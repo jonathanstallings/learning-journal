@@ -5,9 +5,11 @@ import os
 
 from pyramid.config import Configurator
 from pyramid.view import view_config
-from sqlalchemy.ext.declarative import declarative_base
 import sqlalchemy as sa
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import scoped_session, sessionmaker
 from waitress import serve
+from zope.sqlalchemy import ZopeTransactionExtension
 
 
 DATABASE_URL = os.environ.get(
@@ -15,6 +17,7 @@ DATABASE_URL = os.environ.get(
     'postgres://jonathan@localhost:5432/learning-journal'
 )
 
+DBSession = scoped_session(sessionmaker(extension=ZopeTransactionExtension()))
 
 Base = declarative_base()
 
