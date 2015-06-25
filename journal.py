@@ -39,7 +39,8 @@ class Entry(Base):
 
     @classmethod
     def write(cls, title=None, text=None, session=None):
-        pass
+        instance = cls(title=title, text=text)
+        return instance
 
 
 def init_db():
