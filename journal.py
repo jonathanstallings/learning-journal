@@ -37,6 +37,10 @@ class Entry(Base):
             title=self.title, date=self.created
         )
 
+    @classmethod
+    def write(cls, title=None, text=None, session=None):
+        pass
+
 
 def init_db():
     engine = sa.create_engine(DATABASE_URL, echo=False)
