@@ -70,20 +70,11 @@ def entry(db_session):
 
 
 @pytest.fixture()
-def app():
+def app(db_session):
     from journal import main
     from webtest import TestApp
     app = main()
     return TestApp(app)
-
-
-@pytest.fixture(scope='function')
-def auth_req(request):
-    manager = BCRYPTPasswordManager()
-    settings = {
-        'auth.username': 'admin',
-        'auth.password': manager.encode('secret'),
-    }
 
 
 def test_write_entry(db_session):
