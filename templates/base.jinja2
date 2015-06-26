@@ -6,10 +6,13 @@
     <!--[if lt IE 9]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <meta name="viewport" content="width=device-width" />
+    <link href='https://fonts.googleapis.com/css?family=Bangers|Roboto' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
     <link href="/static/style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-    <header>
+    <header class="full-width clearfix">
       <aside id="user-controls">
         <ul>
         {% if not request.authenticated_userid %}
@@ -19,20 +22,26 @@
         {% endif %}
         </ul>
       </aside>
-      <nav>
+      <a href="/" class="logo">Learning Journal</a>
+      <button id="navbar-toggle">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <nav id="navbar-collapse" class="collapse">
         <ul>
-          <li><a href="/">Home</a></li>
+          <li><a href="{{ request.route_url('about') }}">About</a></li>
+          <li><a href="https://github.com/jonathanstallings/learning-journal" target="_blank">Source</a></li>
         </ul>
       </nav>
     </header>
     <main>
-      <h1>My Python Journal</h1>
-      <section id="content">
       {% block body %}{% endblock %}
-      </section>
     </main>
     <footer>
-      <p>Created in the Code Fellows Python Dev Accelerator</p>
+      <p>Created by Jonathan Stallings.<br />Available under the <a href="https://raw.githubusercontent.com/jonathanstallings/learning-journal/master/LICENSE" target="_blank">MIT license.</a></p>
     </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="journal.js"></script>
   </body>
 </html>
