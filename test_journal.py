@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 import os
+
+from pyramid import testing
 import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.exc import IntegrityError
@@ -36,6 +38,23 @@ def db_session(request, connection):
 
     from journal import DBSession
     return DBSession
+
+
+@pytest.fixture(scope='function')
+def auth_req(request):
+    settings = {
+        'auth.username': 'admin',
+        'auth.password': 'secret',
+    }
+    testing.setUp(settings=settings)
+    req = testing.DummyRequest()
+
+    def cleanup():
+        testing.tearDown()
+
+    request.addfinalizer(cleanup)
+
+    return req
 
 
 def test_write_entry(db_session):
