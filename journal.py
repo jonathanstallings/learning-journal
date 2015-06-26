@@ -84,6 +84,11 @@ def list_view(request):
     return {'entries': entries}
 
 
+@view_config(route_name='about', renderer='templates/about.jinja2')
+def about_view(request):
+    return {}
+
+
 @view_config(route_name='detail', renderer='templates/detail.jinja2')
 def detail_view(request):
     entries = Entry.all()
@@ -174,6 +179,7 @@ def main():
     config.include('pyramid_jinja2')
     config.add_static_view('static', os.path.join(HERE, 'static'))
     config.add_route('home', '/')
+    config.add_route('about', '/about')
     config.add_route('detail', '/detail')
     config.add_route('create', '/create')
     config.add_route('edit', '/edit')
