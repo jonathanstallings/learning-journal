@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 import os
 
+from cryptacular.bcrypt import BCRYPTPasswordManager
 from pyramid import testing
 import pytest
 from sqlalchemy import create_engine
@@ -74,6 +75,15 @@ def app():
     from webtest import TestApp
     app = main()
     return TestApp(app)
+
+
+@pytest.fixture(scope='function')
+def auth_req(request):
+    manager = BCRYPTPasswordManager()
+    settings = {
+        'auth.username': 'admin',
+        'auth.password': manager.encode('secret'),
+    }
 
 
 def test_write_entry(db_session):
