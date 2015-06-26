@@ -16,6 +16,7 @@
     </div>
   </form>
   </aside>
+{% endif %}
   <h2>Entries</h2>
   {% for entry in entries %}
   <article class="entry" id="entry={{entry.id}}">
@@ -30,5 +31,4 @@
     <p><em>No entries here so far</em></p>
   </div>
   {% endfor %}
-{% endif %}
 {% endblock %}
