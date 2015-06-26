@@ -16,6 +16,14 @@
     </div>
   </form>
   </aside>
+    <section id="new-entry">
+      <div class="container">
+        <h3>Add Entry</h3>
+        <ul>
+          <li><a href="{{ request.route_url('create') }}">New Entry</a></li>
+        </ul>
+      </div>
+    </section>
 {% endif %}
   <section id="entry-list">
     <div class="container">
@@ -24,24 +32,11 @@
         {% for entry in entries %}
         <li><a href="{{ request.route_url('detail') }}" id="entry={{entry.id}}" class="entry-link">{{ entry.title }}</a><span class="date">{{ entry.created.strftime('%b. %d, %Y') }}</span></li>
         {% else %}
-        
+        <li>
+          <p><em>No entries here so far</em></p>
+        </li>
         {% endfor %}
       </ul>
     </div>
   </section>
-
-  <h2>Entries</h2>
-  {% for entry in entries %}
-  <article class="entry" id="entry={{entry.id}}">
-    <h3>{{ entry.title }}</h3>
-    <p class="dateline">{{ entry.created.strftime('%b. %d, %Y') }}
-    <div class="entry_body">
-      {{ entry.text|safe }}
-    </div>
-  </article>
-  {% else %}
-  <div class="entry">
-    <p><em>No entries here so far</em></p>
-  </div>
-  {% endfor %}
 {% endblock %}
