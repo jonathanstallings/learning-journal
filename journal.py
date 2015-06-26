@@ -87,6 +87,8 @@ def main():
     debug = os.environ.get('DEBUG', True)
     settings['reload_all'] = debug
     settings['debug_all'] = debug
+    settings['auth.username'] = os.environ.get('AUTH_USERNAME', 'admin')
+    settings['auth.password'] = os.environ.get('AUTH_PASSWORD', 'secret')
     if not os.environ.get('TESTING', False):
         # only bind the session if we are not testing
         engine = sa.create_engine(DATABASE_URL)
