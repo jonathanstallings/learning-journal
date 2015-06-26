@@ -21,7 +21,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 DATABASE_URL = os.environ.get(
     'DATABASE_URL',
-    'postgres://jonathan@localhost:5432/learning-journal'
+    'postgresql://jonathan@localhost:5432/learning-journal'
 )
 
 DBSession = scoped_session(sessionmaker(extension=ZopeTransactionExtension()))
