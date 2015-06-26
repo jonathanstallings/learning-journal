@@ -1,0 +1,14 @@
+{% extends "base.jinja2" %}
+{% block body %}
+  <section id="entry-detail">
+    <div class="container">
+      <article>
+        <h1>{{ entry.title|safe }}</h1>
+        <span class="date">{{ entry.created.strftime('%b. %d, %Y') }}</span>
+        <a class="button pull-right" href="{{ request.url_for('edit') }}">Edit</a>
+        <hr />
+        <div>{{ entry.text|safe }}</div>
+      </article>
+    </div>
+  </section>
+{% endblock %}
