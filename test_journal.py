@@ -43,9 +43,10 @@ def db_session(request, connection):
 
 @pytest.fixture(scope='function')
 def auth_req(request):
+    manager = BCRYPTPasswordManager()
     settings = {
         'auth.username': 'admin',
-        'auth.password': 'secret',
+        'auth.password': manager.encode('secret'),
     }
     testing.setUp(settings=settings)
     req = testing.DummyRequest()

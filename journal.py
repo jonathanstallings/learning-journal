@@ -69,9 +69,10 @@ def do_login(request):
         raise ValueError('both username and password are required')
 
     settings = request.registry.settings
+    manager = BCRYPTPasswordManager()
     if username == settings.get('auth.username', ''):
-        if password == settings.get('auth.password', ''):
-            return True
+        hashed = settings.get('auth.password', '')
+        return manager.check(hashed, password)
     return False
 
 
