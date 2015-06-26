@@ -4,6 +4,7 @@ import datetime
 import os
 
 from pyramid.authentication import AuthTktAuthenticationPolicy
+from pyramid.authorization import ACLAuthorizationPolicy
 from pyramid.config import Configurator
 from pyramid.httpexceptions import HTTPFound
 from pyramid.view import view_config
@@ -103,6 +104,7 @@ def main():
             secret=auth_secret,
             hashalg='sha512'
         ),
+        authorization_policy=ACLAuthorizationPolicy(),
     )
     # configuration setup
     config = Configurator(
