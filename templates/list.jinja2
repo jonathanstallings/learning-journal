@@ -17,6 +17,19 @@
   </form>
   </aside>
 {% endif %}
+  <section id="entry-list">
+    <div class="container">
+      <h3>Journal Entries</h3>
+      <ul>
+        {% for entry in entries %}
+        <li><a href="{{ request.route_url('detail') }}" id="entry={{entry.id}}" class="entry-link">{{ entry.title }}</a><span class="date">{{ entry.created.strftime('%b. %d, %Y') }}</span></li>
+        {% else %}
+        
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+
   <h2>Entries</h2>
   {% for entry in entries %}
   <article class="entry" id="entry={{entry.id}}">
