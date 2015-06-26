@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 import datetime
 import os
 
+from pyramid.authentication import AuthTktAuthenticationPolicy
 from pyramid.config import Configurator
 from pyramid.httpexceptions import HTTPFound
 from pyramid.view import view_config
@@ -93,6 +94,16 @@ def main():
         # only bind the session if we are not testing
         engine = sa.create_engine(DATABASE_URL)
         DBSession.configure(bind=engine)
+    # add a secret value for auth tkt signing
+    auth_secret = os.environ.get('JOURNAL_AUTH_SECRET', 'itsaseekrit')
+    # and add a new value to the constructor for our Configurator:
+    config = Configurator(
+        settings=settings,
+        authentication_policy=AuthTktAuthenticationPolicy(
+            secret=auth_secret,
+            hashalg='sha512'
+        ),
+    )
     # configuration setup
     config = Configurator(
         settings=settings
