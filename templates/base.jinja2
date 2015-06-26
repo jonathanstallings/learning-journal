@@ -13,15 +13,6 @@
   </head>
   <body>
     <header class="full-width clearfix">
-      <aside id="user-controls">
-        <ul>
-        {% if not request.authenticated_userid %}
-          <li><a href="{{ request.route_url('login') }}">log in</a></li>
-        {% else %}
-          <li><a href="{{ request.route_url('logout') }}">log out</a></li>
-        {% endif %}
-        </ul>
-      </aside>
       <a href="/" class="logo">Learning Journal</a>
       <button id="navbar-toggle">
         <span class="icon-bar"></span>
@@ -30,8 +21,13 @@
       </button>
       <nav id="navbar-collapse" class="collapse">
         <ul>
-          <li><a href="{{ request.route_url('about') }}">About</a></li>
+          <li><a href="{{ request.route_url('about')}}">About</a></li>
           <li><a href="https://github.com/jonathanstallings/learning-journal" target="_blank">Source</a></li>
+          {% if not request.authenticated_userid %}
+          <li><a href="{{ request.route_url('login') }}">log in</a></li>
+          {% else %}
+          <li><a href="{{ request.route_url('logout') }}">log out</a></li>
+          {% endif %}
         </ul>
       </nav>
     </header>
@@ -42,6 +38,6 @@
       <p>Created by Jonathan Stallings.<br />Available under the <a href="https://raw.githubusercontent.com/jonathanstallings/learning-journal/master/LICENSE" target="_blank">MIT license.</a></p>
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="journal.js"></script>
+    <script src="/static/journal.js"></script>
   </body>
 </html>
