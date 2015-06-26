@@ -57,6 +57,25 @@ def auth_req(request):
     return req
 
 
+@pytest.fixture()
+def entry(db_session):
+    entry = journal.Entry.write(
+        title='Test Title',
+        text='Test Entry Text',
+        session=db_session
+    )
+    db_session.flush()
+    return entry
+
+
+@pytest.fixture()
+def app():
+    from journal import main
+    from webtest import TestApp
+    app = main()
+    return TestApp(app)
+
+
 def test_write_entry(db_session):
     kwargs = {'title': "Test Title", 'text': "Test entry text"}
     kwargs['session'] = db_session
@@ -119,31 +138,12 @@ def test_read_entries_one(db_session):
         assert isinstance(entry, journal.Entry)
 
 
-@pytest.fixture()
-def app():
-    from journal import main
-    from webtest import TestApp
-    app = main()
-    return TestApp(app)
-
-
 def test_empty_listing(app):
     response = app.get('/')
     assert response.status_code == 200
     actual = response.body
     expected = 'No entries here so far'
     assert expected in actual
-
-
-@pytest.fixture()
-def entry(db_session):
-    entry = journal.Entry.write(
-        title='Test Title',
-        text='Test Entry Text',
-        session=db_session
-    )
-    db_session.flush()
-    return entry
 
 
 def test_listing(app, entry):
