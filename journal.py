@@ -84,6 +84,24 @@ def list_view(request):
     return {'entries': entries}
 
 
+@view_config(route_name='detail', renderer='templates/detail.jinja2')
+def detail_view(request):
+    entries = Entry.all()
+    return {'entries': entries}  # Fix context
+
+
+@view_config(route_name='create', renderer='templates/create.jinja2')
+def create_view(request):
+    entries = Entry.all()
+    return {'entries': entries}  # Fix context
+
+
+@view_config(route_name='edit', renderer='templates/edit.jinja2')
+def edit_view(request):
+    entries = Entry.all()
+    return {'entries': entries}  # Fix context
+
+
 @view_config(route_name='add', request_method='POST')
 def add_entry(request):
     title = request.params.get('title')
@@ -156,6 +174,9 @@ def main():
     config.include('pyramid_jinja2')
     config.add_static_view('static', os.path.join(HERE, 'static'))
     config.add_route('home', '/')
+    config.add_route('detail', '/detail')
+    config.add_route('create', '/create')
+    config.add_route('edit', '/edit')
     config.add_route('add', '/add')
     config.add_route('login', '/login')
     config.add_route('logout', '/logout')
