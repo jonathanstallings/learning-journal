@@ -101,19 +101,21 @@ def detail_view(request):
     entry = Entry.by_id(entry_id)
     if entry is None:
         return HTTPNotFound()
-    return {'entry': entry}  # Fix context
-
-
-@view_config(route_name='create', renderer='templates/create.jinja2')
-def create_view(request):
-    entries = Entry.all()
-    return {'entries': entries}  # Fix context
+    return {'entry': entry}
 
 
 @view_config(route_name='edit', renderer='templates/edit.jinja2')
 def edit_view(request):
-    entries = Entry.all()
-    return {'entries': entries}  # Fix context
+    entry_id = int(request.matchdict.get('entry_id', -1))
+    entry = Entry.by_id(entry_id)
+    if entry is None:
+        return HTTPNotFound()
+    return {'entry': entry}
+
+
+@view_config(route_name='create', renderer='templates/create.jinja2')
+def create_view(request):
+    return {}
 
 
 @view_config(route_name='add', request_method='POST')
