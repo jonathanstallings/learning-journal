@@ -7,7 +7,7 @@ from cryptacular.bcrypt import BCRYPTPasswordManager
 from pyramid.authentication import AuthTktAuthenticationPolicy
 from pyramid.authorization import ACLAuthorizationPolicy
 from pyramid.config import Configurator
-from pyramid.httpexceptions import HTTPFound
+from pyramid.httpexceptions import HTTPFound, HTTPNotFound
 from pyramid.security import remember, forget
 from pyramid.view import view_config
 import sqlalchemy as sa
@@ -51,6 +51,12 @@ class Entry(Base):
         return session.query(cls).order_by(cls.created.desc()).all()
 
     @classmethod
+    def by_id(cls, id, session=None):
+        if session is None:
+            session = DBSession
+        return session.query(cls).filter(cls.id == id).first()
+
+    @classmethod
     def write(cls, title=None, text=None, session=None):
         if session is None:
             session = DBSession
@@ -91,8 +97,11 @@ def about_view(request):
 
 @view_config(route_name='detail', renderer='templates/detail.jinja2')
 def detail_view(request):
-    entries = Entry.all()
-    return {'entries': entries}  # Fix context
+    entry_id = int(request.matchdict.get('entry_id', -1))
+    entry = Entry.by_id(entry_id)
+    if entry is None:
+        return HTTPNotFound()
+    return {'entry': entry}  # Fix context
 
 
 @view_config(route_name='create', renderer='templates/create.jinja2')
@@ -180,7 +189,7 @@ def main():
     config.add_static_view('static', os.path.join(HERE, 'static'))
     config.add_route('home', '/')
     config.add_route('about', '/about')
-    config.add_route('detail', '/detail')
+    config.add_route('detail', '/detail/{entry_id:\d+}')
     config.add_route('create', '/create')
     config.add_route('edit', '/edit')
     config.add_route('add', '/add')

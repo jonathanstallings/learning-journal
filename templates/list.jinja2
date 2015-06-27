@@ -30,7 +30,7 @@
       <h3>Journal Entries</h3>
       <ul>
         {% for entry in entries %}
-        <li><a href="{{ request.route_url('detail') }}" id="entry={{entry.id}}" class="entry-link">{{ entry.title }}</a><span class="date">{{ entry.created.strftime('%b. %d, %Y') }}</span></li>
+        <li><a href="{{ request.route_url('detail', entry_id='{{ entry.id }}') }}" id="entry={{ entry.id }}" class="entry-link">{{ entry.title }}</a><span class="date">{{ entry.created.strftime('%b. %d, %Y') }}</span></li>
         {% else %}
         <li>
           <p><em>No entries here so far</em></p>
