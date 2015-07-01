@@ -427,7 +427,8 @@ nav {
 /* Create/Edit
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 #entry-create,
-#entry-edit {
+#entry-edit,
+#login {
   li * {
     float: left;
   }
@@ -438,7 +439,8 @@ nav {
     padding-right: 2rem;
     width: 6rem;
   }
-  input[type="text"] {
+  input[type="text"],
+  input[type="password"] {
     margin: 0;
     line-height: 4rem;
   }
@@ -485,4 +487,17 @@ nav {
   h1 {
     text-align: center;
   }
+}
+
+/* Login
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+#login {
+  label {
+    width: 10rem;
+  }
+}
+
+#form-buttons {
+  margin: 0;
+  padding-left: 10rem;
 }

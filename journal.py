@@ -99,7 +99,6 @@ def about_view(request):
 def detail_view(request):
     entry_id = int(request.matchdict.get('id', -1))
     entry = Entry.by_id(entry_id)
-    # entry = Entry.one(request.matchdict['id'])
     if entry is None:
         return HTTPNotFound()
     return {'entry': entry}
@@ -107,7 +106,7 @@ def detail_view(request):
 
 @view_config(route_name='edit', renderer='templates/edit.jinja2')
 def edit_view(request):
-    entry_id = int(request.matchdict.get('entry_id', -1))
+    entry_id = int(request.matchdict.get('id', -1))
     entry = Entry.by_id(entry_id)
     if entry is None:
         return HTTPNotFound()

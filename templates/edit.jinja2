@@ -3,7 +3,7 @@
   <section id="entry-create">
     <div class="container">
       <h3>Edit Entry</h3>
-      <form action="{{ request.route_url('edit', entry_id='entry.id') }}" method="post">
+      <form action="{{ request.route_url('edit', id=entry.id) }}" method="post">
       <ul>
         <li>
           <label for="title">Title</label>
@@ -16,7 +16,7 @@
         <li>
           <div id="form-buttons">
             <input type="submit" id="save-button"  class="button" value="Save" />
-            <a class="button" href="/">Cancel</a>
+            <a class="button" href="{{ request.route_url('detail', id=entry.id) }}">Cancel</a>
           </div>
         </li>
       </ul>

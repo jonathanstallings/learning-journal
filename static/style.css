@@ -319,17 +319,23 @@ nav {
 /* Create/Edit
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 #entry-create li *,
-#entry-edit li * {
+#entry-edit li *,
+#login li * {
   float: left; }
 #entry-create label,
-#entry-edit label {
+#entry-edit label,
+#login label {
   display: inline-block;
   line-height: 4rem;
   text-align: right;
   padding-right: 2rem;
   width: 6rem; }
 #entry-create input[type="text"],
-#entry-edit input[type="text"] {
+#entry-create input[type="password"],
+#entry-edit input[type="text"],
+#entry-edit input[type="password"],
+#login input[type="text"],
+#login input[type="password"] {
   margin: 0;
   line-height: 4rem; }
 
@@ -361,5 +367,14 @@ nav {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 #about-text h1 {
   text-align: center; }
+
+/* Login
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+#login label {
+  width: 10rem; }
+
+#form-buttons {
+  margin: 0;
+  padding-left: 10rem; }
 
 /*# sourceMappingURL=style.css.map */
