@@ -107,6 +107,8 @@ def detail_view(request):
 @view_config(route_name='edit', renderer='templates/edit.jinja2')
 def edit_view(request):
     entry_id = int(request.matchdict.get('id', -1))
+    if request.method == 'POST':
+        return HTTPFound(request.route_url('detail', id=entry_id))  # Add edit
     entry = Entry.by_id(entry_id)
     if entry is None:
         return HTTPNotFound()
