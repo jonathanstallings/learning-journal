@@ -159,6 +159,38 @@ def test_listing(app, entry):
         assert expected in actual
 
 
+def test_about_view(app):
+    response = app.get('/about')
+    assert response.status_code == 200
+    actual = response.body
+    expected = '<h1>Learning Journal</h1>'
+    assert expected in actual
+
+
+def test_create_view_redirect_then_login(app):
+    username, password = ('admin', 'secret')
+    redirect = login_helper(username, password, app)
+    assert redirect.status_code == 302
+    response = redirect.follow()
+    assert response.status_code == 200
+    # Now check logged in view
+    response = app.get('/create')
+    assert response.status_code == 200
+    actual = response.body
+    expected = '<h3>New Entry</h3>'
+    assert expected in actual
+
+
+def test_edit_view_redirect(app):
+    redirect = app.get('/edit/1')
+    assert redirect.status_code == 302
+    response = redirect.follow()
+    assert response.status_code == 200
+    actual = response.body
+    expected = "<h3>Login</h3>"
+    assert expected in actual
+
+
 def test_post_to_add_view(app):
     entry_data = {
         'title': 'Hello there',
@@ -173,6 +205,7 @@ def test_post_to_add_view(app):
 
 def test_add_no_params(app):
     response = app.post('/add', status=500)
+    assert response.status_code == 500
     assert 'IntegrityError' in response.body
 
 
