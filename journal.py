@@ -106,6 +106,8 @@ def detail_view(request):
 
 @view_config(route_name='edit', renderer='templates/edit.jinja2')
 def edit_view(request):
+    if not request.authenticated_userid:
+        return HTTPFound(request.route_url('login'))
     entry_id = int(request.matchdict.get('id', -1))
     if request.method == 'POST':
         return HTTPFound(request.route_url('detail', id=entry_id))  # Add edit
@@ -117,6 +119,8 @@ def edit_view(request):
 
 @view_config(route_name='create', renderer='templates/create.jinja2')
 def create_view(request):
+    if not request.authenticated_userid:
+        return HTTPFound(request.route_url('login'))
     return {}
 
 
