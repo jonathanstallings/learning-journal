@@ -51,10 +51,10 @@ class Entry(Base):
         return session.query(cls).order_by(cls.created.desc()).all()
 
     @classmethod
-    def by_id(cls, id, session=None):
+    def by_id(cls, id_, session=None):
         if session is None:
             session = DBSession
-        return session.query(cls).filter(cls.id == id).first()
+        return session.query(cls).filter(cls.id == id_).first()
 
     @classmethod
     def write(cls, title=None, text=None, session=None):
@@ -97,8 +97,9 @@ def about_view(request):
 
 @view_config(route_name='detail', renderer='templates/detail.jinja2')
 def detail_view(request):
-    entry_id = int(request.matchdict.get('entry_id', -1))
+    entry_id = int(request.matchdict.get('id', -1))
     entry = Entry.by_id(entry_id)
+    # entry = Entry.one(request.matchdict['id'])
     if entry is None:
         return HTTPNotFound()
     return {'entry': entry}
@@ -191,8 +192,8 @@ def main():
     config.add_static_view('static', os.path.join(HERE, 'static'))
     config.add_route('home', '/')
     config.add_route('about', '/about')
-    config.add_route('detail', '/detail/{entry_id:\d+}')
-    config.add_route('edit', '/edit/{entry_id:\d}')
+    config.add_route('detail', '/detail/{id}')
+    config.add_route('edit', '/edit/{id}')
     config.add_route('create', '/create')
     config.add_route('add', '/add')
     config.add_route('login', '/login')
