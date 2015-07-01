@@ -5,7 +5,9 @@
       <article>
         <h1>{{ entry.title|safe }}</h1>
         <span class="date">{{ entry.created.strftime('%b. %d, %Y') }}</span>
+        {% if request.authenticated_userid %}
         <a class="button pull-right" href="{{ request.route_url('edit', id=entry.id) }}">Edit</a>
+        {% endif %}
         <hr />
         <div>{{ entry.text|safe }}</div>
       </article>
