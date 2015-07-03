@@ -103,7 +103,7 @@ def test_about_view(app):
     assert expected in actual
 
 
-def test_auth_create_view(app, auth_req):
+def test_auth_create_view(app):
     username, password = ('admin', 'secret')
     redirect = login_helper(username, password, app)
     assert redirect.status_code == 302
@@ -116,7 +116,7 @@ def test_auth_create_view(app, auth_req):
     assert expected in actual
 
 
-def test_create_view_redirect(app):
+def test_unauth_create_view_redirect(app):
     redirect = app.get('/create')
     assert redirect.status_code == 302
     response = redirect.follow()
@@ -126,7 +126,7 @@ def test_create_view_redirect(app):
     assert expected in actual
 
 
-def test_edit_view_redirect(app):
+def test_unauth_edit_view_redirect(app):
     redirect = app.get('/edit/1')
     assert redirect.status_code == 302
     response = redirect.follow()
@@ -136,11 +136,16 @@ def test_edit_view_redirect(app):
     assert expected in actual
 
 
-def test_post_to_add_view(app):
+def test_auth_post_to_add_view(app):
     entry_data = {
         'title': 'Hello there',
         'text': 'This is a post'
     }
+    username, password = ('admin', 'secret')
+    redirect = login_helper(username, password, app)
+    assert redirect.status_code == 302
+    response = redirect.follow()
+    assert response.status_code == 200
     response = app.post('/add', params=entry_data, status='3*')
     redirected = response.follow()
     actual = redirected.body
@@ -148,7 +153,26 @@ def test_post_to_add_view(app):
     assert expected in actual
 
 
+def test_unauth_post_to_add_view_redirect(app):
+    entry_data = {
+        'title': 'Hello there',
+        'text': 'This is a post'
+    }
+    redirect = app.post('/add', params=entry_data, status='3*')
+    assert redirect.status_code == 302
+    response = redirect.follow()
+    assert response.status_code == 200
+    actual = response.body
+    expected = "<h3>Login</h3>"
+    assert expected in actual
+
+
 def test_add_no_params(app):
+    username, password = ('admin', 'secret')
+    redirect = login_helper(username, password, app)
+    assert redirect.status_code == 302
+    response = redirect.follow()
+    assert response.status_code == 200
     response = app.post('/add', status=500)
     assert response.status_code == 500
     assert 'IntegrityError' in response.body
