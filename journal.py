@@ -126,6 +126,8 @@ def create_view(request):
 
 @view_config(route_name='add', request_method='POST')
 def add_entry(request):
+    if not request.authenticated_userid:
+        return HTTPFound(request.route_url('login'))
     title = request.params.get('title')
     text = request.params.get('text')
     Entry.write(title=title, text=text)
