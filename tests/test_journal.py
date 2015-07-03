@@ -116,6 +116,16 @@ def test_auth_create_view(app, auth_req):
     assert expected in actual
 
 
+def test_create_view_redirect(app):
+    redirect = app.get('/create')
+    assert redirect.status_code == 302
+    response = redirect.follow()
+    assert response.status_code == 200
+    actual = response.body
+    expected = "<h3>Login</h3>"
+    assert expected in actual
+
+
 def test_edit_view_redirect(app):
     redirect = app.get('/edit/1')
     assert redirect.status_code == 302
