@@ -1,26 +1,30 @@
 Feature: Edit Entry
     A view allowing editing entries
 
-Scenario: Viewing an entry by permalink
-    Given I'm an authenticated user
+Background:
+    Given a learning journal home page
     And I have an entry
-    When I go to the home page
-    And I click on an entry title
-    Then I should not see an error message
-    And I should should be redirected to entry detail
 
-Scenario: Editing an entry
-    Given I'm an authenticated user
-    And I have an entry
+Scenario: Entering edit view
+    Given I am an authenticated user
     When I go to an entry detail page
     And I click on the edit button
+    And I modify the text
+    And I click on the save button
     Then I should be shown an edit view
 
+Scenario: Modifying an entry
+    Given I am an authenticated user
+    And I modify text in edit view
+    When I click the save button
+    Then I should see my changes to the entry
 
+Scenario: Non authenticated detail view
+    Given I am not authenticated
+    When I go to an entry detail page
+    Then I should not see an edit button
 
-
-
-    As an author I want to have a permalink for each journal entry where I can view it in detail.
-    As an author I want to edit my journal entries so I can fix errors.
-    As an author I want to use MarkDown to create and edit my entries so that I can format them nicely.
-    As an author I want to see colorized code samples in my journal entries so that I can more easily understand them.
+Scenario: Non authenticated edit request
+    Given I am not authenticated
+    When I send an edit request
+    Then I should be redirected to login page
