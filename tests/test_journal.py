@@ -91,9 +91,8 @@ def test_listing(app, entry):
     response = app.get('/')
     assert response.status_code == 200
     actual = response.body
-    for field in ['title']:
-        expected = getattr(entry, field, 'absent')
-        assert expected in actual
+    expected = getattr(entry, 'title', 'absent')
+    assert expected in actual
 
 
 def test_about_view(app):
