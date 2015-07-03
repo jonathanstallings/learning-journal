@@ -3,17 +3,23 @@ from pytest_bdd import scenario, given, when, then
 
 
 @given('a learning journal home page')
-def home_page_exits():
-    pass
+def home_page_exits(app):
+    response = app.get('/')
+    assert response.status_code == 200
+    return response
 
 
 @scenario('permalink.feature', 'Viewing an entry by permalink')
-def test_view_permalink():
+def test_view_permalink(app, entry):
     pass
 
 
 @given('I have an entry')
-def entry_exists():
+def entry_exists(app, entry):
+    # response = app.get('/')
+    # actual = response.body
+    # expected = "class='entry-link'"
+    # assert expected in actual
     pass
 
 
@@ -33,12 +39,12 @@ def see_entry_detail():
 
 
 @scenario('permalink.feature', 'Entering an invalid permalink')
-def test_invalid_permalink():
+def test_invalid_permalink(app):
     pass
 
 
 @given('I do not have an entry')
-def entry_not_exists():
+def entry_not_exists(app):
     pass
 
 

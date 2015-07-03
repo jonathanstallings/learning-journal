@@ -103,13 +103,12 @@ def test_about_view(app):
     assert expected in actual
 
 
-def test_create_view_redirect_then_login(app):
+def test_auth_create_view(app, auth_req):
     username, password = ('admin', 'secret')
     redirect = login_helper(username, password, app)
     assert redirect.status_code == 302
     response = redirect.follow()
     assert response.status_code == 200
-    # Now check logged in view
     response = app.get('/create')
     assert response.status_code == 200
     actual = response.body
