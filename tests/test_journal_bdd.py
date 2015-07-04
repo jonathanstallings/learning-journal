@@ -18,20 +18,21 @@ def entry_exists(app, entry):
     actual = response.body
     expected = 'class="entry-link"'
     assert expected in actual
-    return entry
+    return dict(entry=entry, response=response)
 
 
 @when('I click on an entry title')
 def click_on_entry_title(app, entry_exists):
-    response = app.get('/detail/{id}'.format(id=entry_exists.id))
+    entry = entry_exists['entry']
+    response = app.get('/detail/{id}'.format(id=entry.id))
     assert response.status_code == 200
-    return response
+    entry_exists['response'] == response
 
 
 @then('I should should see the entry detail')
-def see_entry_detail(click_on_entry_title):
-    response = click_on_entry_title()
-    entry = entry_exists
+def see_entry_detail(entry_exists):
+    response = entry_exists['response']
+    entry = entry_exists['entry']
     actual = response.body
     expected = entry.title
     assert expected in actual
