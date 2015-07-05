@@ -1,10 +1,6 @@
 Feature: Edit Entry
     A view allowing editing entries
 
-Background:
-    Given a learning journal home page
-    And I have an entry
-
 Scenario: Entering edit view
     Given I am an authenticated user
     And I have an entry
