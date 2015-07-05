@@ -87,23 +87,37 @@ def test_modify_entry():
 
 
 @given('I have an edit view')
-def edit_mode_view():
-    pass
+def edit_mode_view(app, entry):
+    response = app.get('/detail/{id}'.format(id=entry.id))
+    clicked = response.click(linkid='edit-button')
+    return dict(response=clicked)
 
 
 @when('I modify text in edit view')
-def modify_text():
-    pass
+def modify_text(edit_mode_view):
+    response = edit_mode_view['response']
+    form = response.form
+    form.fields['text'][0].value += ' some changes'
+    redirect = form.submit()
+    response = redirect.follow()
+    actual = response.body
+    expected = 'some changes'
+    assert expected in actual
 
 
 @when('I click the save button')
-def click_save_button():
-    pass
+def click_save_button(edit_mode_view):
+    response = edit_mode_view['response']
+    clicked = response.click(linkid='edit-button')
+    edit_mode_view['response'] = clicked
 
 
 @then('I should see my changes to the entry')
-def see_changes():
-    pass
+def see_changes(edit_mode_view):
+    response = edit_mode_view['response']
+    actual = response.body
+    expected = 'Some Changes'
+    assert expected in actual
 
 
 @scenario('edit_entry.feature', 'Non authenticated detail view')
