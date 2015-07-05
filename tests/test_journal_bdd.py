@@ -147,15 +147,26 @@ def no_edit_button(not_auth):
 
 
 @scenario('edit_entry.feature', 'Non authenticated edit request')
-def test_non_auth_edit_request():
+def test_non_auth_edit_request(not_auth):
     pass
 
 
 @when('I send an edit request')
-def send_edit_request():
-    pass
+def send_edit_request(app, entry, not_auth):
+    response = app.post('/edit/{id}'.format(id=entry.id),
+        {
+            'submit': True,
+            'title': 'You got hacked',
+            'text': 'Protect from non-AuthN POST requests!'
+        }
+    )
+    not_auth['response'] = response
 
 
 @then('I should be redirected to login page')
-def redirect_login():
-    pass
+def redirect_login(not_auth):
+    redirect = not_auth['response']
+    response = redirect.follow()
+    actual = response.body
+    expected = "<h3>Login</h3>"
+    assert expected in actual
