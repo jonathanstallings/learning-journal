@@ -45,14 +45,20 @@ def test_invalid_permalink(app):
 
 @given('I do not have an entry')
 def entry_not_exists(app):
-    pass
+    response = app.get('/')
+    actual = response.body
+    expected = 'No entries here so far'
+    assert expected in actual
+    return dict(response=response)
 
 
 @when('I request a permalink')
-def request_permalink():
-    pass
+def request_permalink(app, entry_not_exists):
+    response = app.get('/detail/10')
+    entry_not_exists['response'] == response
 
 
 @then('I should receive a 404 error')
-def receive_404():
-    pass
+def receive_404(entry_not_exists):
+    response = entry_not_exists['response']
+    assert response.status_code == 400
