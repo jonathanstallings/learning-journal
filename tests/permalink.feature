@@ -9,8 +9,4 @@ Scenario: Viewing an entry by permalink
     When I click on an entry title
     Then I should should see the entry detail
 
-Scenario: Entering an invalid permalink
-    Given I do not have an entry
-    When I request a permalink
-    Then I should receive a 404 error
     
