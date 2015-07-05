@@ -126,18 +126,24 @@ def test_non_auth_detail_view():
 
 
 @given('I am not authenticated')
-def not_auth():
-    pass
+def not_auth(app, entry):
+    response = app.get('/')
+    return dict(response=response, entry=entry)
 
 
 @when('I go to an entry detail page')
-def vist_entry_detail():
-    pass
+def vist_entry_detail(app, not_auth):
+    entry = not_auth['entry']
+    response = app.get('/detail/{id}'.format(id=entry.id))
+    not_auth['response'] = response
 
 
 @then('I should not see an edit button')
-def no_edit_button():
-    pass
+def no_edit_button(not_auth):
+    response = not_auth['response']
+    actual = response.body
+    edit_button = 'id="edit-button"'
+    assert edit_button not in actual
 
 
 @scenario('edit_entry.feature', 'Non authenticated edit request')
