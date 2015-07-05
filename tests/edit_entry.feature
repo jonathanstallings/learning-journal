@@ -7,16 +7,16 @@ Background:
 
 Scenario: Entering edit view
     Given I am an authenticated user
-    When I go to an entry detail page
-    And I click on the edit button
-    And I modify the text
-    And I click on the save button
+    And I have an entry
+    And I am on an entry detail page
+    When I click on the edit button
     Then I should be shown an edit view
 
 Scenario: Modifying an entry
     Given I am an authenticated user
-    And I modify text in edit view
-    When I click the save button
+    And I have an edit view
+    When I modify text in edit view
+    And I click the save button
     Then I should see my changes to the entry
 
 Scenario: Non authenticated detail view
