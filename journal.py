@@ -4,6 +4,7 @@ import datetime
 import os
 
 from cryptacular.bcrypt import BCRYPTPasswordManager
+import markdown
 from pyramid.authentication import AuthTktAuthenticationPolicy
 from pyramid.authorization import ACLAuthorizationPolicy
 from pyramid.config import Configurator
@@ -77,6 +78,14 @@ def init_db():
     Base.metadata.create_all(engine)
 
 
+def apply_markdown(text):
+    return markdown.markdown(
+        text,
+        extensions=['codehilite', 'fenced_code'],
+        ouput_format="html5"
+    )
+
+
 def do_login(request):
     username = request.params.get('username', None)
     password = request.params.get('password', None)
@@ -108,7 +117,7 @@ def detail_view(request):
     entry = Entry.by_id(entry_id)
     if entry is None:
         return HTTPNotFound()
-    return {'entry': entry}
+    return {'entry': entry, 'apply_markdown': apply_markdown}
 
 
 @view_config(route_name='edit', renderer='templates/edit.jinja2')

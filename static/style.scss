@@ -501,3 +501,17 @@ nav {
   margin: 0;
   padding-left: 10rem;
 }
+
+/* Codehilite
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.codehilite {
+  pre {
+    padding: .5em;
+    margin: 1em 0;
+    background-color: $lightest-color;
+    border: solid 1px #ddd;
+    width: auto;
+    overflow: auto;
+    font-family: Consolas, Monaco, Courier New;
+  }
+}

@@ -9,7 +9,7 @@
         <a id="edit-button" class="button pull-right" href="{{ request.route_url('edit', id=entry.id) }}">Edit</a>
         {% endif %}
         <hr />
-        <div>{{ entry.text|safe }}</div>
+        <div>{{ apply_markdown(entry.text)|safe }}</div>
       </article>
     </div>
   </section>
