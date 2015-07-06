@@ -362,6 +362,27 @@ nav {
   padding-top: 0;
   font-weight: 200;
   font-style: italic; }
+#entry-detail code {
+  font-family: Monaco, Consolas, "Courier New", monospace;
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  font-weight: bold;
+  white-space: normal;
+  color: #c25;
+  padding: 1px 3px;
+  background-color: #c8c8c8;
+  border: 1px solid #e1e1e8;
+  border-radius: 3px; }
+
+.codehilite pre {
+  padding: 1em;
+  margin: 1em 0;
+  background-color: #282828;
+  border: 1px solid #787878;
+  border-radius: 4px;
+  width: auto;
+  overflow: auto;
+  font-family: Consolas, Monaco, Courier New; }
 
 /* About
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -379,14 +400,5 @@ nav {
 
 /* Codehilite
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-.codehilite pre {
-  padding: 1em;
-  margin: 1em 0;
-  background-color: #282828;
-  border: 1px solid #787878;
-  border-radius: 4px;
-  width: auto;
-  overflow: auto;
-  font-family: Consolas, Monaco, Courier New; }
 
 /*# sourceMappingURL=style.css.map */
