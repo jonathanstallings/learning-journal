@@ -98,25 +98,22 @@ def modify_text(edit_mode_view):
     response = edit_mode_view['response']
     form = response.form
     form.fields['text'][0].value += ' some changes'
-    redirect = form.submit()
-    response = redirect.follow()
-    actual = response.body
-    expected = 'some changes'
-    assert expected in actual
+    edit_mode_view['response'] = response
 
 
 @when('I click the save button')
 def click_save_button(edit_mode_view):
     response = edit_mode_view['response']
-    clicked = response.click(linkid='edit-button')
-    edit_mode_view['response'] = clicked
+    redirected = response.form.submit()
+    response = redirected.follow()
+    edit_mode_view['response'] = response
 
 
 @then('I should see my changes to the entry')
 def see_changes(edit_mode_view):
     response = edit_mode_view['response']
     actual = response.body
-    expected = 'Some Changes'
+    expected = 'some changes'
     assert expected in actual
 
 
@@ -147,7 +144,7 @@ def no_edit_button(not_auth):
 
 
 @scenario('edit_entry.feature', 'Non authenticated edit request')
-def test_non_auth_edit_request(not_auth):
+def test_non_auth_edit_request():
     pass
 
 
