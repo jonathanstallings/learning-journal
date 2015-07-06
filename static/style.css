@@ -380,10 +380,11 @@ nav {
 /* Codehilite
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .codehilite pre {
-  padding: .5em;
+  padding: 1em;
   margin: 1em 0;
-  background-color: #c8c8c8;
-  border: solid 1px #ddd;
+  background-color: #282828;
+  border: 1px solid #787878;
+  border-radius: 4px;
   width: auto;
   overflow: auto;
   font-family: Consolas, Monaco, Courier New; }
