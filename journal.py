@@ -64,6 +64,13 @@ class Entry(Base):
         session.add(instance)
         return instance
 
+    @classmethod
+    def update(cls, id_=None, title=None, text=None):
+        instance = cls.by_id(id_)
+        instance.title = title
+        instance.text = text
+        return instance
+
 
 def init_db():
     engine = sa.create_engine(DATABASE_URL, echo=False)
@@ -108,9 +115,14 @@ def detail_view(request):
 def edit_view(request):
     if not request.authenticated_userid:
         return HTTPFound(request.route_url('login'))
+
     entry_id = int(request.matchdict.get('id', -1))
     if request.method == 'POST':
-        return HTTPFound(request.route_url('detail', id=entry_id))  # Add edit
+        title = request.params.get('title')
+        text = request.params.get('text')
+        Entry.update(id_=entry_id, title=title, text=text)
+        return HTTPFound(request.route_url('detail', id=entry_id))
+
     entry = Entry.by_id(entry_id)
     if entry is None:
         return HTTPNotFound()
