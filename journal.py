@@ -4,7 +4,6 @@ import datetime
 import os
 
 from cryptacular.bcrypt import BCRYPTPasswordManager
-import json
 import markdown
 from pyramid.authentication import AuthTktAuthenticationPolicy
 from pyramid.authorization import ACLAuthorizationPolicy
@@ -15,7 +14,6 @@ from pyramid.view import view_config
 import sqlalchemy as sa
 from sqlalchemy.exc import DBAPIError
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.ext.declarative import DeclarativeMeta
 from sqlalchemy.orm import scoped_session, sessionmaker
 from waitress import serve
 from zope.sqlalchemy import ZopeTransactionExtension

@@ -17,4 +17,29 @@
       </article>
     </div>
   </section>
+  {% if request.authenticated_userid %}
+  <section id="entry-edit" class="hidden">
+    <div class="container">
+      <h3>Edit Entry</h3>
+      <form action="{{ request.route_url('edit', id=entry.id) }}" method="post">
+      <ul>
+        <li>
+          <label for="title">Title</label>
+          <input type="text" name="title" id="title" value="{{ entry.title }}" size="30" maxlength="60" required autofocus/>
+        </li>
+        <li>
+          <label for="text">Text</label>
+          <textarea name="text" id="text" cols="60" rows="20" required>{{ entry.text|safe }}</textarea>
+        </li>
+        <li>
+          <div id="form-buttons">
+            <input type="submit" id="save-button"  class="button" value="Save" />
+            <a class="button" href="{{ request.route_url('detail', id=entry.id) }}">Cancel</a>
+          </div>
+        </li>
+      </ul>
+      </form>
+    </div>
+  </section>
+  {% endif %}
 {% endblock %}

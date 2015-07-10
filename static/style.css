@@ -177,6 +177,9 @@ li {
 .pull-left {
   float: left; }
 
+.hidden {
+  display: none; }
+
 /* Clearing
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .container:after,

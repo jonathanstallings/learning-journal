@@ -1,3 +1,13 @@
+
+
+var taskEventHandler = function (e) {
+    //Examine event and send to approriate handler
+    var el = e.target;
+    var editButton = $('#edit-button');
+    var saveBuitton = $('#save-button');
+};
+
+
 // Event Listener for Collapsible menu button
 $('#navbar-toggle').on('click', function (e) {
     e.preventDefault();
@@ -14,10 +24,13 @@ $("#edit-button").on("click", function (e) {
     $.ajax({
         method: "GET",
         url: url,
-        context: main
+        context: "#entry-edit"
     })
     .done(function(response) {
-        $(this).html(response.text);
+        $('#entry-detail').hide();
+        $('#entry-edit').show();
+        $('#title').val(response.entry.title);
+        $('#text').val(response.entry.text);
     })
     .fail(function() {
         alert( "error" );
