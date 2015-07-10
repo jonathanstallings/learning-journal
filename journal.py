@@ -8,7 +8,7 @@ import markdown
 from pyramid.authentication import AuthTktAuthenticationPolicy
 from pyramid.authorization import ACLAuthorizationPolicy
 from pyramid.config import Configurator
-from pyramid.httpexceptions import HTTPFound, HTTPNotFound
+from pyramid.httpexceptions import HTTPFound, HTTPNotFound, HTTPMethodNotAllowed
 from pyramid.security import remember, forget
 from pyramid.view import view_config
 import sqlalchemy as sa
@@ -122,6 +122,23 @@ def detail_view(request):
 
 @view_config(
     route_name='edit',
+    request_method='POST',
+    xhr=True,
+    renderer='json'
+)
+@view_config(
+    route_name='edit',
+    request_method='GET',
+    xhr=True,
+    renderer='json'
+)
+@view_config(
+    route_name='edit',
+    request_method='POST',
+    renderer='templates/edit.jinja2')
+@view_config(
+    route_name='edit',
+    request_method='GET',
     renderer='templates/edit.jinja2')
 def edit_view(request):
     if not request.authenticated_userid:
@@ -138,6 +155,8 @@ def edit_view(request):
         if entry is None:
             return HTTPNotFound()
         return {'entry': entry}
+    else:
+        return HTTPMethodNotAllowed()
 
 
 @view_config(
@@ -170,6 +189,8 @@ def add_entry(request):
         return HTTPFound(request.route_url('home'))
     elif request.method == 'GET':
         return {}
+    else:
+        return HTTPMethodNotAllowed()
 
 
 @view_config(context=DBAPIError)
