@@ -4,6 +4,7 @@ import datetime
 import os
 
 from cryptacular.bcrypt import BCRYPTPasswordManager
+import json
 import markdown
 from pyramid.authentication import AuthTktAuthenticationPolicy
 from pyramid.authorization import ACLAuthorizationPolicy
@@ -14,6 +15,7 @@ from pyramid.view import view_config
 import sqlalchemy as sa
 from sqlalchemy.exc import DBAPIError
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.ext.declarative import DeclarativeMeta
 from sqlalchemy.orm import scoped_session, sessionmaker
 from waitress import serve
 from zope.sqlalchemy import ZopeTransactionExtension
@@ -44,6 +46,14 @@ class Entry(Base):
         return "Entry: {title} created at {date}".format(
             title=self.title, date=self.created
         )
+
+    def __json__(self, request):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'text': self.text,
+            'created': self.created.isoformat()
+        }
 
     @classmethod
     def all(cls, session=None):
@@ -135,23 +145,27 @@ def detail_view(request):
 @view_config(
     route_name='edit',
     request_method='POST',
-    renderer='templates/edit.jinja2')
+    renderer='templates/edit.jinja2'
+)
 @view_config(
     route_name='edit',
     request_method='GET',
-    renderer='templates/edit.jinja2')
+    renderer='templates/edit.jinja2'
+)
 def edit_view(request):
     if not request.authenticated_userid:
         return HTTPFound(request.route_url('login'))
 
     entry_id = int(request.matchdict.get('id', -1))
+    entry = Entry.by_id(entry_id)
     if request.method == 'POST':
         title = request.params.get('title')
         text = request.params.get('text')
         Entry.update(id_=entry_id, title=title, text=text)
+        if 'HTTP_X_REQUESTED_WITH' in request.environ:
+            return {'entry': entry}
         return HTTPFound(request.route_url('detail', id=entry_id))
     elif request.method == 'GET':
-        entry = Entry.by_id(entry_id)
         if entry is None:
             return HTTPNotFound()
         return {'entry': entry}

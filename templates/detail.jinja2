@@ -2,7 +2,7 @@
 {% block body %}
   <section id="entry-detail">
     <div class="container">
-      <article>
+      <article data-entry-id="{{ entry.id }}">
         <h1>{{ entry.title|safe }}</h1>
         <span class="date">{{ entry.created.strftime('%b. %d, %Y') }}</span>
         {% if request.authenticated_userid %}
