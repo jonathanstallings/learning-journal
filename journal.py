@@ -73,9 +73,9 @@ class Entry(Base):
         return instance
 
     @property
-    def markdown(self, text):
+    def markdown(self):
         return markdown.markdown(
-            text,
+            self.text,
             extensions=['codehilite', 'fenced_code'],
             ouput_format="html5"
         )
