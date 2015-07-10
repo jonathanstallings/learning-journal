@@ -120,7 +120,9 @@ def detail_view(request):
     return {'entry': entry}
 
 
-@view_config(route_name='edit', renderer='templates/edit.jinja2')
+@view_config(
+    route_name='edit',
+    renderer='templates/edit.jinja2')
 def edit_view(request):
     if not request.authenticated_userid:
         return HTTPFound(request.route_url('login'))
@@ -131,28 +133,43 @@ def edit_view(request):
         text = request.params.get('text')
         Entry.update(id_=entry_id, title=title, text=text)
         return HTTPFound(request.route_url('detail', id=entry_id))
-
-    entry = Entry.by_id(entry_id)
-    if entry is None:
-        return HTTPNotFound()
-    return {'entry': entry}
-
-
-@view_config(route_name='create', renderer='templates/create.jinja2')
-def create_view(request):
-    if not request.authenticated_userid:
-        return HTTPFound(request.route_url('login'))
-    return {}
+    elif request.method == 'GET':
+        entry = Entry.by_id(entry_id)
+        if entry is None:
+            return HTTPNotFound()
+        return {'entry': entry}
 
 
-@view_config(route_name='add', request_method='POST')
+@view_config(
+    route_name='add',
+    request_method='POST',
+    xhr=True,
+    renderer='json'
+)
+@view_config(
+    route_name='add',
+    request_method='POST')
+@view_config(
+    route_name='create',
+    request_method='GET',
+    xhr=True, renderer='json'
+)
+@view_config(
+    route_name='create',
+    request_method='GET',
+    renderer='templates/create.jinja2'
+    )
 def add_entry(request):
     if not request.authenticated_userid:
         return HTTPFound(request.route_url('login'))
-    title = request.params.get('title')
-    text = request.params.get('text')
-    Entry.write(title=title, text=text)
-    return HTTPFound(request.route_url('home'))
+
+    if request.method == 'POST':
+        title = request.params.get('title')
+        text = request.params.get('text')
+        Entry.write(title=title, text=text)
+        return HTTPFound(request.route_url('home'))
+    elif request.method == 'GET':
+        return {}
 
 
 @view_config(context=DBAPIError)
