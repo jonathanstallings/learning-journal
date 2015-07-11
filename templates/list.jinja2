@@ -24,4 +24,9 @@
       </ul>
     </div>
   </section>
+{% if request.authenticated_userid %}
+  <div id="create-container" class="hidden">
+    {% include "create_base.jinja2" %}
+  </div>
+{% endif %}
 {% endblock %}
