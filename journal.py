@@ -193,6 +193,29 @@ def edit_view(request):
 
 
 @view_config(
+    route_name='delete',
+    request_method='POST',
+    xhr=True,
+    renderer='json'
+)
+@view_config(
+    route_name='delete',
+    request_method='POST',
+    renderer='templates/edit.jinja2'
+)
+def del_entry(request):
+    if not request.authenticated_userid:
+        return HTTPFound(request.route_url('login'))
+
+    entry_id = int(request.matchdict.get('id', -1))
+    if request.method == 'POST':
+        Entry.delete(entry_id)
+        return HTTPFound(request.route_url('home'))
+    else:
+        return HTTPMethodNotAllowed()
+
+
+@view_config(
     route_name='add',
     request_method='POST',
     xhr=True,
@@ -298,6 +321,7 @@ def main():
     config.add_route('about', '/about')
     config.add_route('detail', '/detail/{id}')
     config.add_route('edit', '/edit/{id}')
+    config.add_route('delete', '/delete/{id}')
     config.add_route('create', '/create')
     config.add_route('add', '/add')
     config.add_route('login', '/login')

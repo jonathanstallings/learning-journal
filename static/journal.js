@@ -117,6 +117,14 @@ var ajaxEditView = function (e) {
     });
 };
 
+var cancelEdit = function (e) {
+    //Close edit view; show needed elements.
+    e.preventDefault();
+
+    $('#edit-container').hide();
+    $('#entry-detail').show();
+};
+
 var ajaxSaveEdit = function (e) {
     //Send AJAX POST request to save edit and display entry detail view.
     e.preventDefault();
@@ -141,14 +149,6 @@ var ajaxSaveEdit = function (e) {
     }).fail(function() {
         alert( "error" );
     });
-};
-
-var cancelEdit = function (e) {
-    //Close edit view; show needed elements.
-    e.preventDefault();
-
-    $('#edit-container').hide();
-    $('#entry-detail').show();
 };
 
 // Event Listener for Collapsible menu button
