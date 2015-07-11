@@ -91,27 +91,3 @@ $('#navbar-toggle').on('click', function (e) {
 
 // Event Listener for main section
 $('main').on("click", taskEventHandler);
-
-
-// Event Listener for edit button
-// $("#edit-button").on("click", function (e) {
-//     e.preventDefault();
-
-//     var url = "/edit/" + $("article").data('entry-id');
-//     var main = $('main');
-
-//     $.ajax({
-//         method: "GET",
-//         url: url,
-//         context: "#entry-edit"
-//     })
-//     .done(function(response) {
-//         $('#entry-detail').hide();
-//         $('#entry-edit').show();
-//         $('#title').val(response.entry.title);
-//         $('#text').val(response.entry.text);
-//     })
-//     .fail(function() {
-//         alert( "error" );
-//     });
-// });
