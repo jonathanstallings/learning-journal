@@ -10,7 +10,9 @@ var taskEventHandler = function (e) {
     if (editButton) {
         ajaxEditView(e);
     } else if (saveButton) {
-        ajaxSaveFromEdit(e);
+        ajaxSaveEdit(e);
+    } else if (cancelButton) {
+        ajaxCancelEdit(e);
     }
 };
 
@@ -34,8 +36,8 @@ var ajaxEditView = function (e) {
 };
 
 
-var ajaxSaveFromEdit = function (e) {
-    //Send AJAX GET request for edit view
+var ajaxSaveEdit = function (e) {
+    //Send AJAX POST request to save edit
     e.preventDefault();
     var id = $("article").data('entry-id');
     var title = $('#title-edit').val();
@@ -61,6 +63,24 @@ var ajaxSaveFromEdit = function (e) {
     });
 };
 
+
+var ajaxCancelEdit = function (e) {
+    //Send AJAX GET request for detail view
+    e.preventDefault();
+    var url = "/detail/" + $("article").data('entry-id');
+
+    $.ajax({
+        method: "GET",
+        url: url,
+    }).done(function(response) {
+        $('#entry-edit').hide();
+        $('#entry-detail').show();
+        $('#title-detail').html(response.entry.title);
+        $('#text-detail').html(response.entry.markdown);
+    }).fail(function() {
+        alert( "error" );
+    });
+};
 
 // Event Listener for Collapsible menu button
 $('#navbar-toggle').on('click', function (e) {
