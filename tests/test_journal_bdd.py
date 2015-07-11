@@ -168,3 +168,19 @@ def redirect_login(not_auth):
     actual = response.body
     expected = "<h3>Login</h3>"
     assert expected in actual
+
+
+@scenario('twitter.feature', 'Using the twitter button')
+def test_authn_twitter_button():
+    pass
+
+
+@when('I click on the twitter button')
+def click_twitter_button():
+    pass
+
+
+@then('I should be see a new page with the prepared tweet')
+def view_tweet_page():
+    pass
+
