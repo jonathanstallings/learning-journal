@@ -116,6 +116,12 @@ def do_login(request):
     return False
 
 
+@view_config(
+    route_name='home',
+    request_method='GET',
+    xhr=True,
+    renderer='json'
+)
 @view_config(route_name='home', renderer='templates/list.jinja2')
 def list_view(request):
     entries = Entry.all()

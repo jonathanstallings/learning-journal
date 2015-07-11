@@ -38,7 +38,7 @@ var ajaxSaveCreate = function (e) {
     e.preventDefault();
     var title = $('#title-create').val();
     var text = $('#text-create').val();
-    var url = "/create";
+    var url = "/add";
 
     $.ajax({
         method: "POST",
@@ -49,8 +49,9 @@ var ajaxSaveCreate = function (e) {
         }
     }).done(function(response) {
         $('#create-container').hide();
+        $('#entry-list').show();
         $('#new-entry').show();
-        ajaxCreateUpdate();
+        ajaxCreateUpdate(e);
     }).fail(function() {
         alert( "error" );
     });
@@ -58,22 +59,26 @@ var ajaxSaveCreate = function (e) {
 
 var ajaxCreateUpdate = function (e) {
     //Send AJAX POST request to save edit
-    var url = "/list";
-    var $entriesUL = $('#entry-list ul');
-    var $newEntry = document.createElement("li");
-    var $newEntryLink = document.createElement("a");
-    var $newEntryDate = document.createElement("span");
+    var url = "/";
 
     $.ajax({
         method: "GET",
         url: url,
-    }).done(function(response) {
-        // $newEntryLink.attr({
-        //     href: $newEntryLink.data('url-base') + response.new_entry.id,
-        //     id: "entry" + response.new_entry.id
-        // }).text(response.new_entry.title);
-        $newEntryDate.text(response.new_entry.created);
-        $firstEntry.before($newEntry);
+    }).done(function(response) {  //Need to complete
+        var entry = response.entries[0];
+        var $ul = $('#entry-list ul');
+        var $li = $('<li></li>');
+        var $link = $('<a>' + entry.title + '</a>');
+        $link.attr({
+           href: "/detail/" + entry.id,
+           id: "entry" + entry.id,
+           "class": "entry-link"
+        });
+        var $date = $('<span>' + entry.created + '</span>');
+        $date.addClass('date');
+        $li.append($link);
+        $li.append($date);
+        $ul.prepend($li);
     }).fail(function() {
         alert( "error" );
     });
