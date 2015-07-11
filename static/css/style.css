@@ -386,6 +386,8 @@ nav {
 #entry-detail .form-buttons {
   margin: 0;
   padding-left: 4rem; }
+  #entry-detail .form-buttons .delete:hover {
+    color: #CF2323; }
 
 .codehilite pre {
   padding: 1em;

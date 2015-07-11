@@ -7,6 +7,7 @@ $lightest-color: rgb(200, 200, 200);
 $highlight-color: white;
 $text-color: rgb(157, 157, 157);
 $link-color: lightslategray;
+$red-color: #CF2323;
 
 $heading-font: 'Bangers', cursive;
 $text-font: 'Roboto', sans-serif;
@@ -507,6 +508,10 @@ nav {
   .form-buttons {
     margin: 0;
     padding-left: 4rem;
+    
+    .delete:hover {
+      color: $red-color;
+    }
   }
 }
 
