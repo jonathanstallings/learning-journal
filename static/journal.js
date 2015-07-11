@@ -79,12 +79,14 @@ var ajaxCreateUpdate = function (e) {
         var $ul = $('#entry-list ul');
         var $li = $('<li></li>');
         var $link = $('<a>' + entry.title + '</a>');
+        var created = new moment(entry.created);
+        var dateParsed = created.format("MMM. D, YYYY");
         $link.attr({
            href: "/detail/" + entry.id,
            id: "entry" + entry.id,
            "class": "entry-link"
         });
-        var $date = $('<span>' + entry.created + '</span>');  //Fix date format
+        var $date = $('<span>' + dateParsed + '</span>');  //Fix date format
         $date.addClass('date');
         $li.append($link);
         $li.append($date);
