@@ -15,7 +15,13 @@ var taskEventHandler = function (e) {
             cancelCreate(e);
             break;
         case 'delete-button-detail':
-            ajaxDeleteEntry(e);
+            deleteConfirmation(e, 'check');
+            break;
+        case 'delete-confirm-button-detail':
+            deleteConfirmation(e, 'confirm');
+            break;
+        case 'delete-cancel-button-detail':
+            deleteConfirmation(e, 'cancel');
             break;
         case 'edit-button-detail':
             ajaxEditView(e);
@@ -101,9 +107,27 @@ var ajaxCreateUpdate = function (e) {
     });
 };
 
-var deleteConfirmation = function (e) {
+var deleteConfirmation = function (e, step) {
     //Display confirmation button for deletion
-    
+
+    switch(step) {
+        case 'check':
+            newEntryView(e);
+            $('#delete-button-detail').hide();
+            $('#edit-button-detail').hide();
+            $('#delete-confirm-button-detail').show();
+            $('#delete-cancel-button-detail').show();
+            break;
+        case 'confirm':
+            ajaxDeleteEntry(e);
+            break;
+        case 'cancel':
+            $('#delete-button-detail').show();
+            $('#edit-button-detail').show();
+            $('#delete-confirm-button-detail').hide();
+            $('#delete-cancel-button-detail').hide();
+            break;
+    }
 };
 
 var ajaxDeleteEntry = function (e) {
