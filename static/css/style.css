@@ -362,6 +362,18 @@ nav {
 #entry-edit .form-buttons .button,
 #login .form-buttons .button {
   width: 8rem; }
+#entry-create .form-buttons a.button,
+#entry-edit .form-buttons a.button,
+#login .form-buttons a.button {
+  padding: 10px; }
+
+/* Login
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+#login label {
+  width: 10rem; }
+#login .form-buttons {
+  margin: 0;
+  padding-left: 10rem; }
 
 /* Detail
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -407,14 +419,6 @@ nav {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 #about-text h1 {
   text-align: center; }
-
-/* Login
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-#login label {
-  width: 10rem; }
-#login .form-buttons {
-  margin: 0;
-  padding-left: 10rem; }
 
 /* Codehilite
 –––––––––––––––––––––––––––––––––––––––––––––––––– */

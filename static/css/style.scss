@@ -478,8 +478,25 @@ nav {
     .button {
       width: 8rem;
     }
+    a.button {
+      padding: 10px;
+    }
   }
 }
+
+
+/* Login
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+#login {
+  label {
+    width: 10rem;
+  }
+  .form-buttons {
+    margin: 0;
+    padding-left: 10rem;
+  }
+}
+
 
 /* Detail
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -537,18 +554,6 @@ nav {
 #about-text {
   h1 {
     text-align: center;
-  }
-}
-
-/* Login
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-#login {
-  label {
-    width: 10rem;
-  }
-  .form-buttons {
-    margin: 0;
-    padding-left: 10rem;
   }
 }
 
