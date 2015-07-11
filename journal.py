@@ -8,7 +8,8 @@ import markdown
 from pyramid.authentication import AuthTktAuthenticationPolicy
 from pyramid.authorization import ACLAuthorizationPolicy
 from pyramid.config import Configurator
-from pyramid.httpexceptions import HTTPFound, HTTPNotFound, HTTPMethodNotAllowed
+from pyramid.httpexceptions import (HTTPFound, HTTPNotFound,
+                                    HTTPMethodNotAllowed)
 from pyramid.security import remember, forget
 from pyramid.view import view_config
 import sqlalchemy as sa
