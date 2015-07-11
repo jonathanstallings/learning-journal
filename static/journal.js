@@ -2,26 +2,27 @@
 
 var taskEventHandler = function (e) {
     //Examine event and send to approriate handler
-    var el = e.target;
-    var editButton = el.matches("#edit-button");
-    var saveButton = el.matches("#save-button");
-    var cancelButtonEdit = el.matches("#cancel-button-edit");
-    var cancelButtonCreate = el.matches("#cancel-button-create");
-    var newEntryButton = el.matches("#new-entry-button");
-    var saveButtonCreate = el.matches('#save-button-edit');
+    var target = e.target;
     
-    if (editButton) {
-        ajaxEditView(e);
-    } else if (saveButton) {
-        ajaxSaveEdit(e);
-    } else if (cancelButtonEdit) {
-        cancelEdit(e);
-    } else if (newEntryButton) {
-        newEntryView(e);
-    } else if (cancelButtonCreate) {
-        cancelCreate(e);
-    } else if (saveButtonCreate) {
-        ajaxSaveCreate(e);
+    switch(target.id) {
+        case 'new-entry-button':
+            newEntryView(e);
+            break;
+        case 'save-button-create':
+            ajaxSaveCreate(e);
+            break;
+        case 'cancel-button-create':
+            cancelCreate(e);
+            break;
+        case 'edit-button':
+            ajaxEditView(e);
+            break;
+        case 'save-button-edit':
+            ajaxSaveEdit(e);
+            break;
+        case 'cancel-button-edit':
+            cancelEdit(e);
+            break;
     }
 };
 
