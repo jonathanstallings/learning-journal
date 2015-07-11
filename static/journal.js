@@ -80,6 +80,7 @@ var ajaxCreateUpdate = function (e) {
         var $li = $('<li></li>');
         var $link = $('<a>' + entry.title + '</a>');
         var created = new moment(entry.created);
+        create.locale('en');
         var dateParsed = created.format("MMM. D, YYYY");
         $link.attr({
            href: "/detail/" + entry.id,
