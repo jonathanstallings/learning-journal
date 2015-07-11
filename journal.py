@@ -62,6 +62,12 @@ class Entry(Base):
         return session.query(cls).order_by(cls.created.desc()).all()
 
     @classmethod
+    def newest(cls, session=None):
+        if session is None:
+            session = DBSession
+        return session.query(cls).order_by(cls.created.desc()).first()
+
+    @classmethod
     def by_id(cls, id_, session=None):
         if session is None:
             session = DBSession
@@ -200,8 +206,13 @@ def add_entry(request):
         title = request.params.get('title')
         text = request.params.get('text')
         Entry.write(title=title, text=text)
+        if 'HTTP_X_REQUESTED_WITH' in request.environ:
+            return {}
         return HTTPFound(request.route_url('home'))
     elif request.method == 'GET':
+        if 'HTTP_X_REQUESTED_WITH' in request.environ:
+            newest = Entry.newest()
+            return {'new_entry': newest}
         return {}
     else:
         return HTTPMethodNotAllowed()
