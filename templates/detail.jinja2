@@ -7,8 +7,8 @@
         <span id="date-detail" class="date">{{ entry.created.strftime('%b. %d, %Y') }}</span>
         {% if request.authenticated_userid %}
         <form id="form-buttons-detail" action="{{ request.route_url('delete', id=entry.id) }}" method="post" class="form-buttons pull-right">
-          <a id="edit-button" class="button pull-right" href="{{ request.route_url('edit', id=entry.id) }}">Edit</a>
-          <button type="submit" name="delete" class="button delete">Delete</button>
+          <a id="edit-button-detail" class="button pull-right" href="{{ request.route_url('edit', id=entry.id) }}">Edit</a>
+          <button id="delete-button-detail" type="submit" name="delete" class="button delete">Delete</button>
         </form>
         <div id="twitter-button-div" class="clearfix pull-right">
            <a target="_blank" href="http://twitter.com/home?status={{ entry.title }} {{ request.route_url('detail', id=entry.id) }}"><img src="/static/img/twitter.png" alt="Twitter" class='twitter-button'></a>

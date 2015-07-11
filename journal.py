@@ -208,8 +208,11 @@ def del_entry(request):
         return HTTPFound(request.route_url('login'))
 
     entry_id = int(request.matchdict.get('id', -1))
+    entry = Entry.by_id(entry_id)
     if request.method == 'POST':
         Entry.delete(entry_id)
+        if 'HTTP_X_REQUESTED_WITH' in request.environ:
+            return {'entry': entry}
         return HTTPFound(request.route_url('home'))
     else:
         return HTTPMethodNotAllowed()

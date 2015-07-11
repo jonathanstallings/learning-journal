@@ -14,7 +14,10 @@ var taskEventHandler = function (e) {
         case 'cancel-button-create':
             cancelCreate(e);
             break;
-        case 'edit-button':
+        case 'delete-button-detail':
+            ajaxDeleteEntry(e);
+            break;
+        case 'edit-button-detail':
             ajaxEditView(e);
             break;
         case 'save-button-edit':
@@ -69,7 +72,7 @@ var ajaxSaveCreate = function (e) {
 };
 
 var ajaxCreateUpdate = function (e) {
-    //Send AJAX GET request for data and update entry list.
+    //Send AJAX GET request for data and update entry list after new entry.
     var url = "/";
 
     $.ajax({
@@ -93,6 +96,48 @@ var ajaxCreateUpdate = function (e) {
         $li.append($link);
         $li.append($date);
         $ul.prepend($li);
+    }).fail(function() {
+        alert( "error" );
+    });
+};
+
+var deleteConfirmation = function (e) {
+    //Display confirmation button for deletion
+    
+};
+
+var ajaxDeleteEntry = function (e) {
+    //Send AJAX POST request to delete entry and then display entry list.
+    e.preventDefault();
+    var id = $("article").data('entry-id');
+    var url = "/delete/" + id;
+
+    $.ajax({
+        method: "POST",
+        url: url,
+        data: {
+            id: id,
+        }
+    }).done(function(response) {
+        $('#entry-detail').hide();
+        $('#entry-list').show();
+        $('#new-entry').show();
+        ajaxDeleteUpdate(e, response.entry);
+    }).fail(function() {
+        alert( "error" );
+    });
+};
+
+var ajaxDeleteUpdate = function (e, deletedEntry) {
+    //Send AJAX GET request for data and update entry list after deletion.
+    var url = "/";
+
+    $.ajax({
+        method: "GET",
+        url: url,
+    }).done(function(response) {
+        var $deletedEntry = $('#' + deletedEntry.id);
+        $deletedEntry.remove();
     }).fail(function() {
         alert( "error" );
     });
