@@ -6,9 +6,9 @@
         <h1 id="title-detail">{{ entry.title|safe }}</h1>
         <span id="date-detail" class="date">{{ entry.created.strftime('%b. %d, %Y') }}</span>
         {% if request.authenticated_userid %}
-        <a id="edit-button" class="button pull-right" href="{{ request.route_url('edit', id=entry.id) }}">Edit</a>
-        <form action="{{ request.route_url('delete', id=entry.id) }}" method="post">
-          <input type="submit" id="delete-button-detail" class="button" value="Delete" />
+        <form id="form-buttons-detail" action="{{ request.route_url('delete', id=entry.id) }}" method="post" class="form-buttons pull-right">
+          <a id="edit-button" class="button pull-right" href="{{ request.route_url('edit', id=entry.id) }}">Edit</a>
+          <button type="submit" name="delete" form="form-buttons-detail">Delete</button>
         </form>
         <div id="twitter-button-div" class="clearfix pull-right">
            <a target="_blank" href="http://twitter.com/home?status={{ entry.title }} {{ request.route_url('detail', id=entry.id) }}"><img src="/static/img/twitter.png" alt="Twitter" class='twitter-button'></a>

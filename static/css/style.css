@@ -88,7 +88,11 @@ input[type="button"] {
   display: inline-block;
   box-sizing: border-box;
   background: none;
-  cursor: pointer; }
+  cursor: pointer;
+  color: lightslategray;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  border: none; }
   .button:hover, .button:focus,
   button:hover,
   button:focus,
@@ -132,6 +136,19 @@ select {
     select {
       width: 80%;
       font-size: 1.8rem; } }
+
+.form-buttons {
+  margin: 0 0 0 6rem; }
+  .form-buttons .button {
+    float: none;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    padding: 8px 10px;
+    font-size: 1.8rem;
+    color: lightslategray; }
+    .form-buttons .button:hover, .form-buttons .button:focus {
+      color: white; }
 
 label,
 legend {
@@ -341,20 +358,10 @@ nav {
 #login input[type="password"] {
   margin: 0;
   line-height: 4rem; }
-
-#form-buttons {
-  margin: 0 0 0 6rem; }
-  #form-buttons .button {
-    float: none;
-    background: none;
-    border: 0;
-    width: 8rem;
-    cursor: pointer;
-    padding: 8px 10px;
-    font-size: 1.8rem;
-    color: lightslategray; }
-    #form-buttons .button:hover, #form-buttons .button:focus {
-      color: white; }
+#entry-create .form-buttons .button,
+#entry-edit .form-buttons .button,
+#login .form-buttons .button {
+  width: 8rem; }
 
 /* Detail
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -376,6 +383,9 @@ nav {
   background-color: #282828;
   border: 1px solid #e1e1e8;
   border-radius: 3px; }
+#entry-detail .form-buttons {
+  margin: 0;
+  padding-left: 4rem; }
 
 .codehilite pre {
   padding: 1em;
@@ -400,8 +410,7 @@ nav {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 #login label {
   width: 10rem; }
-
-#form-buttons {
+#login .form-buttons {
   margin: 0;
   padding-left: 10rem; }
 

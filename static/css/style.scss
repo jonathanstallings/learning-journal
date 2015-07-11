@@ -119,6 +119,10 @@ input[type="button"] {
   box-sizing: border-box;
   background: none;
   cursor: pointer;
+  color: $link-color;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  border: none;
   &:hover, &:focus {
     color: $highlight-color;
     @include text-shadow;
@@ -150,6 +154,23 @@ select {
   }
   &:focus {
     
+  }
+}
+
+.form-buttons {
+  margin: 0 0 0 6rem;
+  .button {
+    float: none;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    padding: 8px 10px;
+    font-size: 1.8rem;
+    color: $link-color;
+    &:hover,
+    &:focus {
+      color: white;
+    }
   }
 }
 
@@ -452,22 +473,9 @@ nav {
   textarea::-webkit-scrollbar-track-piece {
 
   }
-}
-
-#form-buttons {
-  margin: 0 0 0 6rem;
-  .button {
-    float: none;
-    background: none;
-    border: 0;
-    width: 8rem;
-    cursor: pointer;
-    padding: 8px 10px;
-    font-size: 1.8rem;
-    color: $link-color;
-    &:hover,
-    &:focus {
-      color: white;
+  .form-buttons {
+    .button {
+      width: 8rem;
     }
   }
 }
@@ -495,6 +503,10 @@ nav {
     background-color: $darker-color;
     border: 1px solid #e1e1e8;
     border-radius: 3px;
+  }
+  .form-buttons {
+    margin: 0;
+    padding-left: 4rem;
   }
 }
 
@@ -529,12 +541,12 @@ nav {
   label {
     width: 10rem;
   }
+  .form-buttons {
+    margin: 0;
+    padding-left: 10rem;
+  }
 }
 
-#form-buttons {
-  margin: 0;
-  padding-left: 10rem;
-}
 
 /* Codehilite
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
