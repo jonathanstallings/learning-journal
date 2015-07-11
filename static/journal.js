@@ -15,7 +15,7 @@ var taskEventHandler = function (e) {
     } else if (saveButton) {
         ajaxSaveEdit(e);
     } else if (cancelButtonEdit) {
-        ajaxCancelEdit(e);
+        cancelEdit(e);
     } else if (newEntryButton) {
         newEntryView(e);
     } else if (cancelButtonCreate) {
@@ -26,7 +26,7 @@ var taskEventHandler = function (e) {
 };
 
 var newEntryView = function (e) {
-    //Send AJAX GET request for edit view
+    //Show the new entry view, hiding unneeded elements.
     e.preventDefault();
     $('#new-entry').hide();
     $('#entry-list').hide();
@@ -34,7 +34,7 @@ var newEntryView = function (e) {
 };
 
 var cancelCreate = function (e) {
-    //Send AJAX GET request for edit view
+    //Close new entry view; empty and hide form; show needed elements.
     e.preventDefault();
     $('#new-entry').show();
     $('#entry-list').show();
@@ -44,7 +44,7 @@ var cancelCreate = function (e) {
 };
 
 var ajaxSaveCreate = function (e) {
-    //Send AJAX POST request to save edit
+    //Send AJAX POST request to save new entry.
     e.preventDefault();
     var title = $('#title-create').val();
     var text = $('#text-create').val();
@@ -68,7 +68,7 @@ var ajaxSaveCreate = function (e) {
 };
 
 var ajaxCreateUpdate = function (e) {
-    //Send AJAX POST request to save edit
+    //Send AJAX GET request for data and update entry list.
     var url = "/";
 
     $.ajax({
@@ -80,7 +80,7 @@ var ajaxCreateUpdate = function (e) {
         var $li = $('<li></li>');
         var $link = $('<a>' + entry.title + '</a>');
         var created = new moment(entry.created);
-        create.locale('en');
+        created.locale('en');
         var dateParsed = created.format("MMM. D, YYYY");
         $link.attr({
            href: "/detail/" + entry.id,
@@ -98,7 +98,7 @@ var ajaxCreateUpdate = function (e) {
 };
 
 var ajaxEditView = function (e) {
-    //Send AJAX GET request for edit view
+    //Send AJAX GET request and display edit view.
     e.preventDefault();
     var url = "/edit/" + $("article").data('entry-id');
 
@@ -117,13 +117,12 @@ var ajaxEditView = function (e) {
 };
 
 var ajaxSaveEdit = function (e) {
-    //Send AJAX POST request to save edit
+    //Send AJAX POST request to save edit and display entry detail view.
     e.preventDefault();
     var id = $("article").data('entry-id');
     var title = $('#title-edit').val();
     var text = $('#text-edit').val();
     var url = "/edit/" + id;
-    
 
     $.ajax({
         method: "POST",
@@ -143,22 +142,12 @@ var ajaxSaveEdit = function (e) {
     });
 };
 
-var ajaxCancelEdit = function (e) {
-    //Send AJAX GET request for detail view
+var cancelEdit = function (e) {
+    //Close edit view; show needed elements.
     e.preventDefault();
-    var url = "/detail/" + $("article").data('entry-id');
 
-    $.ajax({
-        method: "GET",
-        url: url,
-    }).done(function(response) {
-        $('#edit-container').hide();
-        $('#entry-detail').show();
-        $('#title-detail').html(response.entry.title);
-        $('#text-detail').html(response.entry.markdown);
-    }).fail(function() {
-        alert( "error" );
-    });
+    $('#edit-container').hide();
+    $('#entry-detail').show();
 };
 
 // Event Listener for Collapsible menu button
