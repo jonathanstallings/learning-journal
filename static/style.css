@@ -387,6 +387,10 @@ nav {
   overflow: auto;
   font-family: Consolas, Monaco, Courier New; }
 
+.twitter-button {
+  height: 3rem;
+  width: 3rem; }
+
 /* About
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 #about-text h1 {
