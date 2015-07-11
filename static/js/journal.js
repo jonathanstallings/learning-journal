@@ -119,7 +119,7 @@ var deleteConfirmation = function (e, step) {
             $('#delete-cancel-button-detail').show();
             break;
         case 'confirm':
-            ajaxDeleteEntry(e);
+            // ajaxDeleteEntry(e);  //Need single page app for this
             break;
         case 'cancel':
             $('#delete-button-detail').show();
