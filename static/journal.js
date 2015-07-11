@@ -33,6 +33,16 @@ var newEntryView = function (e) {
     $('#create-container').show();
 };
 
+var cancelCreate = function (e) {
+    //Send AJAX GET request for edit view
+    e.preventDefault();
+    $('#new-entry').show();
+    $('#entry-list').show();
+    $('#create-container').hide();
+    $('#title-create').val('');
+    $('#text-create').val('');
+};
+
 var ajaxSaveCreate = function (e) {
     //Send AJAX POST request to save edit
     e.preventDefault();
@@ -64,7 +74,7 @@ var ajaxCreateUpdate = function (e) {
     $.ajax({
         method: "GET",
         url: url,
-    }).done(function(response) {  //Need to complete
+    }).done(function(response) {
         var entry = response.entries[0];
         var $ul = $('#entry-list ul');
         var $li = $('<li></li>');
@@ -74,7 +84,7 @@ var ajaxCreateUpdate = function (e) {
            id: "entry" + entry.id,
            "class": "entry-link"
         });
-        var $date = $('<span>' + entry.created + '</span>');
+        var $date = $('<span>' + entry.created + '</span>');  //Fix date format
         $date.addClass('date');
         $li.append($link);
         $li.append($date);
@@ -82,16 +92,6 @@ var ajaxCreateUpdate = function (e) {
     }).fail(function() {
         alert( "error" );
     });
-};
-
-var cancelCreate = function (e) {
-    //Send AJAX GET request for edit view
-    e.preventDefault();
-    $('#new-entry').show();
-    $('#entry-list').show();
-    $('#create-container').hide();
-    $('#title-create').val('');
-    $('#text-create').val('');
 };
 
 var ajaxEditView = function (e) {
@@ -112,7 +112,6 @@ var ajaxEditView = function (e) {
         alert( "error" );
     });
 };
-
 
 var ajaxSaveEdit = function (e) {
     //Send AJAX POST request to save edit
@@ -140,7 +139,6 @@ var ajaxSaveEdit = function (e) {
         alert( "error" );
     });
 };
-
 
 var ajaxCancelEdit = function (e) {
     //Send AJAX GET request for detail view
