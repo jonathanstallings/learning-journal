@@ -27,7 +27,7 @@ var ajaxEditView = function (e) {
         context: "#entry-edit"
     }).done(function(response) {
         $('#entry-detail').hide();
-        $('#entry-edit').show();
+        $('#edit-container').show();
         $('#title-edit').val(response.entry.title);
         $('#text-edit').val(response.entry.text);
     }).fail(function() {
@@ -54,7 +54,7 @@ var ajaxSaveEdit = function (e) {
             text: text
         }
     }).done(function(response) {
-        $('#entry-edit').hide();
+        $('#edit-container').hide();
         $('#entry-detail').show();
         $('#title-detail').html(response.entry.title);
         $('#text-detail').html(response.entry.markdown);
@@ -73,7 +73,7 @@ var ajaxCancelEdit = function (e) {
         method: "GET",
         url: url,
     }).done(function(response) {
-        $('#entry-edit').hide();
+        $('#edit-container').hide();
         $('#entry-detail').show();
         $('#title-detail').html(response.entry.title);
         $('#text-detail').html(response.entry.markdown);
