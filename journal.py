@@ -88,6 +88,13 @@ class Entry(Base):
         instance.text = text
         return instance
 
+    @classmethod
+    def delete(cls, id_, session=None):
+        if session is None:
+            session = DBSession
+        instance = cls.by_id(id_)
+        session.delete(instance)
+
     @property
     def markdown(self):
         return markdown.markdown(
