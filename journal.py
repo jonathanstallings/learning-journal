@@ -51,7 +51,8 @@ class Entry(Base):
             'id': self.id,
             'title': self.title,
             'text': self.text,
-            'created': self.created.isoformat()
+            'created': self.created.isoformat(),
+            'markdown': self.markdown
         }
 
     @classmethod
