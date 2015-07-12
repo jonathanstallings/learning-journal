@@ -178,7 +178,7 @@ def test_authn_twitter_button():
 
 @then('I should have a prepared twitter link')
 def view_tweet_page(entry_detail_page):
-    # import pdb; pdb.set_trace()
+    """Tesing this way because of lack of Twitter AuthN cookie."""
     response = entry_detail_page['response']
     entry = entry_detail_page['entry']
     soup = response.html
@@ -191,3 +191,17 @@ def view_tweet_page(entry_detail_page):
     ]
     for item in expected:
         assert unicode(item) in href
+
+
+@scenario('twitter.feature', 'Non authenticated twitter button absence')
+def test_non_authn_twitter_button():
+    pass
+
+
+@then('I should not see a twitter button')
+def no_twitter_button(not_auth):
+    # import pdb; pdb.set_trace()
+    response = not_auth['response']
+    soup = response.html
+    twitter_button = soup.find('a', {'id': 'twitter-button'})
+    assert twitter_button is None

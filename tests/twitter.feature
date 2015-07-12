@@ -6,7 +6,7 @@ Scenario: Using the twitter button
     And I am on an entry detail page
     Then I should have a prepared twitter link
     
-# Scenario: Non authenticated twitter button absence
-#     Given I am not authenticated
-#     When I go to an entry detail page
-#     Then I should not see a twitter button
+Scenario: Non authenticated twitter button absence
+    Given I am not authenticated
+    When I go to an entry detail page
+    Then I should not see a twitter button
