@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 import pytest
 from pytest_bdd import scenario, given, when, then
 
@@ -64,7 +65,7 @@ def is_authenticated(app, entry):
 @given('I am on an entry detail page')
 def entry_detail_page(app, entry):
     response = app.get('/detail/{id}'.format(id=entry.id))
-    return dict(response=response)
+    return dict(response=response, entry=entry)
 
 
 @when('I click on the edit button')
@@ -175,12 +176,18 @@ def test_authn_twitter_button():
     pass
 
 
-@when('I click on the twitter button')
-def click_twitter_button():
-    pass
-
-
-@then('I should be see a new page with the prepared tweet')
-def view_tweet_page():
-    pass
-
+@then('I should have a prepared twitter link')
+def view_tweet_page(entry_detail_page):
+    # import pdb; pdb.set_trace()
+    response = entry_detail_page['response']
+    entry = entry_detail_page['entry']
+    soup = response.html
+    twitter_button = soup.find('a', {'id': 'twitter-button'})
+    href = twitter_button.attrs['href']
+    expected = [
+        entry.title,
+        entry.id,
+        'twitter.com'
+    ]
+    for item in expected:
+        assert unicode(item) in href
