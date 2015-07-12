@@ -200,7 +200,6 @@ def test_non_authn_twitter_button():
 
 @then('I should not see a twitter button')
 def no_twitter_button(not_auth):
-    # import pdb; pdb.set_trace()
     response = not_auth['response']
     soup = response.html
     twitter_button = soup.find('a', {'id': 'twitter-button'})
